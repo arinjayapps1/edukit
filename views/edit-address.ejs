@@ -1,0 +1,104 @@
+<%- include('navbar',{isAuthenticated:isAuthenticated}); -%>
+<div class="page-title-overlap bg-accent pt-4 mt-5">
+  <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+    <div class="d-flex align-items-center pb-3">
+      <div class="ps-3">
+        <h3 class="text-light fs-lg mb-0">Createx Studio</h3>
+        <span class="d-block text-light fs-ms opacity-60 py-1">Member since November 2019</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container pb-3 mb-5">
+  <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+    <form class="px-3" action="/edit-address" method="POST">
+      <!-- Shipping address-->
+
+      <h2 class="h3 py-2 me-2 text-center text-sm-start">Edit Address</h2>
+      <input type="hidden" name="locationId" value="<%= location.id %>">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="checkout-fn">Name</label>
+            <input class="form-control" type="text" id="checkout-fn" name="Name" value="<%= location.name %>">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="checkout-phone">Phone Number</label>
+            <input class="form-control" type="text" id="checkout-phone" name="phone" value="<%= location.name %>">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="checkout-address-1">Address 1</label>
+            <input class="form-control" type="text" id="checkout-address-1" name="address1" value="<%= location.addressLine1 %>">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="checkout-address-2">Address 2</label>
+            <input class="form-control" type="text" id="checkout-address-2" name="address2" value="<%= location.addressLine2 %>">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="checkout-city">State</label>
+            <select class="form-select" id="checkout-city" name="state" value="<%= location.state %>">
+
+              <option SELECTED><%= location.state %></option>
+
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="checkout-city">City</label>
+            <select class="form-select" id="checkout-city" name="city" value="<%= location.city %>">
+              <option>Choose city</option>
+              <option>Delhi</option>
+              <option>Faridabad</option>
+              <option>Noida</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="checkout-zip">ZIP Code</label>
+            <input class="form-control" type="text" id="checkout-zip" name="zipcode" value="<%= location.zipcode %>">
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- Navigation (desktop)-->
+      <div class="px-5 mx-5 mt-3 align-items-center justify-content-center pb-3">
+
+
+        <div class="mx-5 px-5 align-items-center justify-content-center">
+
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="btn btn-primary d-block w-100" type="submit">
+            <span class="d-none d-sm-inline">Save</span>
+            <span class="d-inline d-sm-none">Save</span>
+          </button>
+        </div>
+
+      </div>
+  </div>
+  </form>
+
+
+</div>
+
+
+
+<%- include('footer'); -%>

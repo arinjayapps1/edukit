@@ -1,0 +1,218 @@
+<%- include('navbar'); -%>
+    <div class="page-title-overlap bg-dark pt-4 mt-5">
+        <div class="container d-lg-flex justify-content-between py-lg-3">
+            <div class="order-lg-1 pe-lg-4 text-center text-lg-start pt-1">
+                <h1 class="h3 text-light mb-0">Seller Onboarding</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mb-0">
+            <section class="col-lg-8">
+                <!-- Steps-->
+                <div class="steps steps-light pt-2 pb-3 mb-5">
+                    <a class="step-item active">
+                        <div class="step-progress"><span class="step-count">1</span></div>
+                        <div class="step-label"><i class="ci-user-circle"></i>Signup</div>
+                    </a>
+                    <a class="step-item active" href="/selleraddress">
+                        <div class="step-progress"><span class="step-count">2</span></div>
+                        <div class="step-label"><i class="ci-store"></i>Details</div>
+                    </a>
+                    <a class="step-item active" href="/sellergst">
+                        <div class="step-progress"><span class="step-count">3</span></div>
+                        <div class="step-label"><i class="ci-calculator"></i>GST</div>
+                    </a>
+                    <a class="step-item active" href="/sellerbank">
+                        <div class="step-progress"><span class="step-count">4</span></div>
+                        <div class="step-label"><i class="ci-wallet"></i>Bank Details</div>
+                    </a>
+                    <a class="step-item active current" href="/complete">
+                        <div class="step-progress"><span class="step-count">5</span></div>
+                        <div class="step-label"><i class="ci-card"></i>Complete</div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+    <% if (message){%>
+        <div class="container alert alert-danger d-flex message-div " role="alert">
+          <div class="alert-icon">
+            <i class="ci-close-circle"></i>
+          </div>
+          <div class="message">
+            <%message.forEach(msg =>{%>
+            <%=msg%>
+            <br>
+            <%})%>
+          </div>
+        </div>
+        <%}%>
+    <!--main body-->
+    <div class="container pb-3 mb-5">
+        <form action="/reviewseller" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="bg-light shadow-lg rounded-3 overflow-hidden px-3">
+                <h2 class="h3 py-1 me-2 text-center text-sm-start">User Details</h2>
+                <!--address-->
+                <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+                    <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+                        <div class="pt-2">
+                            <h3 class="product-title fs-base mb-2">First Name:<span class="text-muted">
+                                    <%= user.firstName %>
+                                </span></h3>
+                            <h3 class="product-title fs-base mb-2">Last Name:<span class="text-muted">
+                                    <%= user.lastName %>
+                                </span></h3>
+                            <h3 class="product-title fs-base mb-2">User Name:<span class="text-muted">
+                                    <%= user.email %>
+                                </span>
+                            </h3>
+                            <input type="hidden" name="email" id="email" value="<%= user.email %>">
+                            <input type="hidden" name="mobile" id="mobile" value="<%= user.MOBILE %>">
+                            <h3 class="product-title fs-base mb-2">Mobile:<span class="text-muted">
+                                    <%= user.MOBILE %>
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+
+                </div>
+                <%if(locations.length>0){%>
+                <% locations.forEach(loc=>{ %>
+                <h2 class="h3 py-1 me-2 text-center text-sm-start">Store Details</h2>
+                <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+                    <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+                        <div class="pt-2">
+                            <h3 class="product-title fs-base mb-2">Contact First Name:<span class="text-muted">
+                                    <%= loc.firstname %>
+                                </span>
+                            </h3>
+                            <h3 class="product-title fs-base mb-2">Contact Last Name:<span class="text-muted">
+                                <%= loc.lastname %>
+                            </span></h3>
+                             <input type="hidden" name="contactFirstName" id="contactFirstName" value="<%= loc.firstname %>">
+                             <input type="hidden" name="contactLastName" id="contactLastName" value="<%= loc.lastname %>">
+                            <h3 class="product-title fs-base mb-2">Address Line1:<span class="text-muted">
+                                    <%= loc.addressLine1 %>
+                                </span>
+                            </h3>
+                            <input type="hidden" name="addressLine1" id="addressLine1" value="<%= loc.addressLine1 %>">
+                            <h3 class="product-title fs-base mb-2">Address Line2:<span class="text-muted">
+                                    <%= loc.addressLine2 %>
+                                </span>
+                            </h3>
+                            <input type="hidden" name="addressLine2" id="addressLine2" value="<%= loc.addressLine2 %>">
+                            <h3 class="product-title fs-base mb-2">City:<span class="text-muted">
+                                    <%= loc.city %>
+                                </span>
+                            </h3>
+                            <input type="hidden" name="city" id="city" value="<%= loc.city %>">
+                            <h3 class="product-title fs-base mb-2">State:<span class="text-muted">
+                                    <%= loc.state %>
+                                </span>
+                            </h3>
+                            <input type="hidden" name="state" id="state" value="<%= loc.state %>">
+                            <input type="hidden" name="zipcode" id="zipcode" value="<%= loc.zipcode %>">
+                            <input type="hidden" name="locationId" id="locationId" value="<%= loc.id %>">
+                            <h3 class="product-title fs-base mb-2">Zipcode:<span class="text-muted">
+                                    <%= loc.zipcode %>
+                                </span>
+                            </h3>
+
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+                <%}%>
+            <!---->
+            <%if(gstdetails.length>0){%>
+                <% gstdetails.forEach(gst=>{ %>
+                <h2 class="h3 py-1 me-2 text-center text-sm-start">GST Details</h2>
+                <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+                    <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+                        <div class="pt-2">
+                            <h3 class="product-title fs-sm  mb-2">Business Trade:<span
+                                    class="text-muted"><%= gst.cname %></span></h3>
+                            <input type="hidden" id="companyName" name="companyName" value="<%= gst.cname %>">
+                            <input type="hidden" id="gstin" name="gstin" value="<%= gst.gstin %>">
+                            <h3 class="product-title fs-sm  mb-2">Company Name:<span
+                                    class="text-muted"><%= gst.cname %></span></h3>
+                            <h3 class="product-title fs-sm  mb-2">Constitution of Business:<span
+                                    class="text-muted"><%= gst.ctb %></span></h3>
+                            <h3 class="product-title fs-sm  mb-2">Registration Date :<span
+                                    class="text-muted"><%= gst.regdate %></span></h3>
+                            <h3 class="product-title fs-sm  mb-2">Taxpayer Type:<span
+                                    class="text-muted"><%= gst.taxtype %></span></h3>
+                            <h3 class="product-title fs-sm  mb-2">Status :<span
+                                    class="text-muted"><%= gst.status %></span></h3>
+
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+                <%}%>
+            <!---->
+            <%if(bankdetails.length>0){%>
+                <% bankdetails.forEach(bank=>{ %>
+                <h2 class="h3 py-1 me-2 text-center text-sm-start">Bank Details</h2>
+                <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2">
+                    <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+                        <div class="pt-2">
+                            <h3 class="product-title fs-sm  mb-2">Account Holder:<span
+                                    class="text-muted"><%= bank.AccountName %></span></h3>
+                            <h3 class="product-title fs-sm  mb-2">Account Num:<span
+                                    class="text-muted"><%= bank.AccountNum %></span></h3>
+                            <h3 class="product-title fs-sm  mb-2">IFSC:<span class="text-muted"><%= bank.IFSC %></span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+                <%}%>
+            <div class="row d-none d-lg-flex mx-2 mb-2">
+                <div class="col-lg-8 mb-2">
+                  <div class="d-none d-lg-flex pt-1 mt-1">
+                    <div class="w-50 pe-3">
+                      <a class="btn btn-secondary d-block w-100" href="/sellerbank">
+                        <i class="ci-arrow-left mt-sm-0 me-2"></i>
+                        <span class="d-none d-sm-inline">Back to Bank Details</span>
+                        <span class="d-inline d-sm-none">Back</span>
+                      </a>
+                    </div>
+                    <div class="w-50 ps-2">
+                        <%if(message==null){%>
+                      <button class="btn btn-primary d-block w-100" id="save" type="submit">
+                        <span class="d-none d-sm-inline">Save</span>
+                        <span class="d-inline d-sm-none">Save</span><i class="fa fa-arrow-right mt-sm-0 ms-1"></i>
+                      </button>
+                      <%}%>
+                    </div>
+          
+                  </div>
+                </div>
+              </div>
+              <!-- Navigation (mobile)-->
+              <div class="row d-lg-none">
+                <div class="col-lg-8">
+                  <div class="d-flex pt-4 mt-3">
+                    <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100" href="/sellerbank">
+                        <i class="ci-arrow-left mt-sm-0 me-1"></i>
+                        <span class="d-none d-sm-inline">Bank</span>
+                        <span class="d-inline d-sm-none">Back</span></a></div>
+                    <div class="w-50 ps-2">
+                      <%if(message==null){%>
+                      <button class="btn btn-primary razor-pay d-block w-100" id="save" type="submit">
+                        <span class="d-none d-sm-inline">save</span><span class="d-inline d-sm-none">save</span>
+                        <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+                      </button>
+                      <%}%>
+                    </div>
+                  </div>
+                </div>
+          
+              </div>
+        </div>
+        </form>
+    </div>
+    <%- include('footer'); -%>

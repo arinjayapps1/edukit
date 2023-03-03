@@ -1,0 +1,195 @@
+<%- include('navbar',{isAuthenticated:isAuthenticated}); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+    <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-5">
+      <!--<div class="d-flex align-items-center pb-3">-->
+        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2 ">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+              <li class="breadcrumb-item">
+                <a class="text-nowrap" href="/">
+                  <i class="ci-home"></i>Home
+                </a>
+              </li>
+              <li class="breadcrumb-item text-nowrap"><a href="#">Account</a>
+              </li>
+              <li class="breadcrumb-item text-nowrap active" aria-current="page">Sales Dashboard</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+          <h1 class="h3 text-light mb-0">Your sales / earnings</h1>
+          
+        </div>
+        <!--<div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem;">
+          <img class="rounded-circle" src="/images/avatar.png" alt="Createx Studio">
+        </div>
+        <div class="ps-3">
+          <h3 class="text-light fs-lg mb-0">Createx Studio</h3>
+          <span class="d-block text-light fs-ms opacity-60 py-1">Member since November 2019</span>
+        </div>-->
+      <!--</div>-->
+      <!--<div class="d-flex">
+        <div class="text-sm-end me-5">
+          <div class="text-light fs-base">Total sales</div>
+          <h3 class="text-light">426</h3>
+        </div>
+        <div class="text-sm-end">
+          <div class="text-light fs-base">Seller rating</div>
+          <div class="star-rating">
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star"></i>
+          </div>
+          <div class="text-light opacity-60 fs-xs">Based on 98 reviews</div>
+        </div>
+      </div>-->
+    </div>
+</div>    
+<div class="container mb-5 pb-3 pt-3">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+      <div class="row">
+        <div class="col-lg-4 pe-xl-5">
+          <div class="d-block d-lg-none p-4"><a class="btn btn-outline-accent d-block" href="#account-menu"
+              data-bs-toggle="collapse" aria-expanded="true"><i class="fas fa-bars me-2"></i></i>Account menu</a></div>
+          <div class="h-100 border-end mb-2">
+            <div class="d-lg-block collapse" id="account-menu">
+              <div class="bg-secondary p-4">
+                <h3 class="fs-sm mb-0 text-muted">Account</h3>
+              </div>
+              <ul class="list-unstyled mb-0">
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/edit-signin">
+                    <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Profile</a>
+                </li>
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
+                    <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
+                </li>
+                <li class="border-bottom mb-0">
+                  <a class="btn nav-link-style  d-flex align-items-center px-4 py-3" href="/addresses">
+                    <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Addresses</a>
+                </li>
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-purchases.html">
+                    <i class="fa fa-shopping-cart opacity-60 me-2" aria-hidden="true"></i>Purchases</a></li>
+                <li class="mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-favorites.html">
+                    <i class="far fa-heart opacity-60 me-2" aria-hidden="true"></i>Favorites<span
+                      class="fs-sm text-muted ms-auto">4</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="bg-secondary p-4">
+                <h3 class="fs-sm mb-0 text-muted">Seller Dashboard</h3>
+              </div>
+              <ul class="list-unstyled mb-0">
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-sales.html">
+                    <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Sales<span
+                      class="fs-sm text-muted ms-auto">$1,375.00</span>
+                  </a>
+                </li>
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/products">
+                    <i class="fa fa-box opacity-60 me-2" aria-hidden="true"></i>Products<span
+                      class="fs-sm text-muted ms-auto">5</span>
+                  </a>
+                </li>
+                <li class="border-bottom mb-0">
+                  <a class="btn nav-link-style active d-flex align-items-center px-4 py-3" href="/add-product">
+                    <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
+                </li>
+                <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3"
+                    href="dashboard-payouts.html">
+                    <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
+                </li>
+  
+                <li class="mb-0">
+                  <form action="/signout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                    <button class="btn nav-link-style d-flex align-items-center px-4 py-3" type="submit">
+                      <i class="fa fa-arrow-left opacity-60 me-2" aria-hidden="true"></i> Sign out</button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Content-->
+        <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+          <% if (message){%>
+
+            <div class="alert alert-danger d-flex" role="alert">
+              <div class="alert-icon">
+                <i class="ci-close-circle"></i>
+              </div>
+              <div><%= message %></div>
+            </div>
+      
+            <%}%>
+            <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+              <h2 class="h3 py-2 text-center text-sm-start">Your sales / earnings</h2>
+              <div class="row mx-n2 pt-2">
+                <div class="col-md-4 col-sm-6 px-2 mb-4">
+                  <div class="bg-secondary h-100 rounded-3 p-4 text-center">
+                    <h3 class="fs-sm text-muted">Earnings(before shipping)</h3>
+                    <p class="h2 mb-2"><i class="ci-rupee ci-rupee2"></i><%=totalsales%><small>.00</small></p>
+                    <p class="fs-ms text-muted mb-0">Sales <%=firstdate%> - <%=lastdate%></p>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-6 px-2 mb-4">
+                  <div class="bg-secondary h-100 rounded-3 p-4 text-center">
+                    <h3 class="fs-sm text-muted">Your balance</h3>
+                    <p class="h2 mb-2"><i class="ci-rupee ci-rupee2"></i><%=balanceamt%><small>.00</small></p>
+                    <p class="fs-ms text-muted mb-0">Balance <%=firstdate%> - <%=lastdate%></p>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12 px-2 mb-4">
+                  <div class="bg-secondary h-100 rounded-3 p-4 text-center">
+                    <h3 class="fs-sm text-muted">Lifetime earnings</h3>
+                    <p class="h2 mb-2"><i class="ci-rupee ci-rupee2"></i><%=totalsales1%><small>.00</small></p>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row mx-n2">
+                <div class="col-lg-8 px-2">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h3 class="fs-sm pb-3 mb-3 border-bottom">Sales value, RUPEES <span class="fw-normal fs-xs text-muted">(Month Wise)</span></h3>
+                      <div class="ct-chart ct-perfect-fourth" data-line-chart="{&quot;labels&quot;: [&quot;Jan&quot;, &quot;&quot;, &quot;Mar&quot;, &quot;&quot;, &quot;May&quot;, &quot;&quot;, &quot;Jun&quot;, &quot;&quot;, &quot;Jul&quot;, &quot;&quot;, &quot;Sep&quot;, &quot;&quot;, &quot;Nov&quot;, &quot;Dec&quot; ], &quot;series&quot;: [[<%=saledata%>]]}"></div>
+                    </div>
+                  </div>
+                  <div class="card mb-4 mb-lg-2">
+                    <div class="card-body">
+                      <h3 class="fs-sm pb-3 mb-3 border-bottom">Order count <span class="fw-normal fs-xs text-muted">(Month Wise)</span></h3>
+                      <div class="ct-chart ct-perfect-fourth" data-line-chart="{&quot;labels&quot;: [&quot;Jan&quot;, &quot;&quot;, &quot;Mar&quot;, &quot;&quot;, &quot;May&quot;, &quot;&quot;, &quot;Jun&quot;, &quot;&quot;, &quot;Jul&quot;, &quot;&quot;, &quot;Sep&quot;, &quot;&quot;, &quot;Nov&quot;, &quot;Dec&quot; ], &quot;series&quot;: [[<%=orderdata%>]]}" data-options="{&quot;axisY&quot;: {&quot;onlyInteger&quot;: true}}"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 px-2">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="fs-sm pb-3 mb-0 border-bottom">Your top selling products</h3>
+                      <%topproducts.forEach(product=>{%>
+                        <div class="d-flex justify-content-between align-items-center fs-sm py-2 border-bottom">
+                          <div class="d-flex align-items-start py-1">
+                            <img src=<%=product.item_image_url%> width="30" alt=<%=product.item_id%>>
+                            <div class="ps-1"><%=product.ITEM_NAME%></div>
+                          </div><span><i class="ci-rupee ci-rupee1"></i><%=product.total_sales%></span>
+                        </div>
+                      <%})%>
+                      
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+      </div>
+    </div>
+</div>      
+<%- include('footer'); -%>

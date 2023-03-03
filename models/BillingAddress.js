@@ -1,0 +1,50 @@
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../util/database');
+
+const BillingAddress = sequelize.define('billingaddress',{
+    id:{
+      type:Sequelize.INTEGER,
+      autoIncrement:true,
+      allowNull:false,
+      primaryKey:true
+    },
+    firstname:{
+    type:Sequelize.STRING,
+    allowNull:false,
+    field:"CONTACT_FIRST_NAME",
+   },
+   lastname:{
+    type:Sequelize.STRING,
+    allowNull:false,
+    field:"CONTACT_LAST_NAME",
+   },
+   primary:{
+    type:Sequelize.STRING,
+    allowNull:false,
+   },
+   country:{
+    type:Sequelize.STRING,
+    allowNull:false,
+   },
+   state:{
+    type:Sequelize.STRING,
+    allowNull:false,
+   },
+   address1:{
+    type:Sequelize.STRING,
+    allowNull:false,
+   },
+   address2:{
+    type:Sequelize.STRING,
+    allowNull:false,
+   },
+   city:{
+    type:Sequelize.STRING,
+    allowNull:false,
+   },
+   zipcode:{
+    type:Sequelize.INTEGER,
+    allowNull:false
+   }
+});
+module.exports=BillingAddress;

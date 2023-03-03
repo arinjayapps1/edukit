@@ -1,0 +1,283 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+    <div
+        class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-5">
+        <!--<div class="d-flex align-items-center pb-3">-->
+        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2 ">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                    <li class="breadcrumb-item">
+                        <a class="text-nowrap" href="/">
+                            <i class="ci-home"></i>Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item text-nowrap"><a href="#">Account</a>
+                    </li>
+                    <li class="breadcrumb-item text-nowrap active" aria-current="page">Orders history</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">My orders</h1>
+        </div>
+        <!--<div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem;">
+          <img class="rounded-circle" src="/images/avatar.png" alt="Createx Studio">
+        </div>
+        <div class="ps-3">
+          <h3 class="text-light fs-lg mb-0">Createx Studio</h3>
+          <span class="d-block text-light fs-ms opacity-60 py-1">Member since November 2019</span>
+        </div>-->
+        <!--</div>-->
+        <!--<div class="d-flex">
+        <div class="text-sm-end me-5">
+          <div class="text-light fs-base">Total sales</div>
+          <h3 class="text-light">426</h3>
+        </div>
+        <div class="text-sm-end">
+          <div class="text-light fs-base">Seller rating</div>
+          <div class="star-rating">
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star-filled active"></i>
+            <i class="star-rating-icon ci-star"></i>
+          </div>
+          <div class="text-light opacity-60 fs-xs">Based on 98 reviews</div>
+        </div>
+      </div>-->
+    </div>
+</div>
+
+<div class="container mb-5 pb-3">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+        <div class="row">
+            <div class="col-lg-4 pe-xl-5">
+                <div class="d-block d-lg-none p-4"><a class="btn btn-outline-accent d-block" href="#account-menu"
+                        data-bs-toggle="collapse" aria-expanded="true"><i class="fas fa-bars me-2"></i></i>Account
+                        menu</a></div>
+                <div class="h-100 border-end mb-2">
+                    <div class="d-lg-block collapse" id="account-menu">
+                        <div class="bg-secondary p-4">
+                            <h3 class="fs-sm mb-0 text-muted">Account</h3>
+                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/edit-signin">
+                                    <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Profile</a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
+                                    <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="btn nav-link-style d-flex align-items-center px-4 py-3" href="/addresses">
+                                    <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Addresses</a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/orders">
+                                    <i class="fa fa-shopping-cart opacity-60 me-2" aria-hidden="true"></i>Orders</a>
+                            </li>
+                            <li class="mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3"
+                                    href="dashboard-favorites.html">
+                                    <i class="far fa-heart opacity-60 me-2" aria-hidden="true"></i>Favorites<span
+                                        class="fs-sm text-muted ms-auto">4</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="bg-secondary p-4">
+                            <h3 class="fs-sm mb-0 text-muted">Seller Dashboard</h3>
+                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex align-items-center px-4 py-3"
+                                    href="dashboard-sales.html">
+                                    <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Sales<span
+                                        class="fs-sm text-muted ms-auto">$1,375.00</span>
+                                </a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="nav-link-style d-flex active align-items-center px-4 py-3" href="/products">
+                                    <i class="fa fa-box opacity-60 me-2" aria-hidden="true"></i>Products<span
+                                        class="fs-sm text-muted ms-auto">5</span>
+                                </a>
+                            </li>
+                            <li class="border-bottom mb-0">
+                                <a class="btn nav-link-style d-flex align-items-center px-4 py-3" href="/add-product">
+                                    <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
+                            </li>
+                            <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3"
+                                    href="dashboard-payouts.html">
+                                    <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
+                            </li>
+
+                            <li class="mb-0">
+                                <form action="/signout" method="POST">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                    <button class="btn nav-link-style d-flex align-items-center px-4 py-3"
+                                        type="submit">
+                                        <i class="fa fa-arrow-left opacity-60 me-2" aria-hidden="true"></i> Sign
+                                        out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 pt-lg-4 pb-4">
+                <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+                    <% if (message){%>
+                    <div class="alert alert-danger d-flex" role="alert">
+                        <div class="alert-icon">
+                            <i class="ci-close-circle"></i>
+                        </div>
+                        <div><%= message %></div>
+                    </div>
+                    <%}%>
+                    <!--title-->
+                    <div class="d-sm-flex flex-wrap justify-content-between align-items-center pb-2">
+                        <h2 class="h3 py-2 me-2 text-center text-sm-start">Orders</h2>
+                    </div>
+                    <div class="table-responsive fs-md mb-4">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Order #</th>
+                                    <th>Date Purchased</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (orders.length>0) { %>
+                    <% orders.forEach(function(order){ %>
+                    <tr>
+                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="#order-details<%=order.id%>"
+                                data-bs-toggle="modal"><%=order.id%></a></td>
+                        <td class="py-3"><%= order.createdAt.toLocaleString('en-US', options);%></td>
+                        <% if (order.status==="CREATED"){%>
+                        <td class="py-3"><span class="badge bg-info m-0"><%=order.status%></span></td>
+                        <%}%>
+                                    <% if (order.status==="DELIVERED"){%>
+                        <td class="py-3"><span class="badge bg-success m-0"><%=order.status%></span></td>
+                        <%}%>
+                                    <% if (order.status==="CANCELLED"){%>
+                        <td class="py-3"><span class="badge bg-danger m-0"><%=order.status%></span></td>
+                        <%}%>
+                                    <% if (order.status==="DELAYED"){%>
+                        <td class="py-3"><span class="badge bg-warning m-0"><%=order.status%></span></td>
+                        <%}%>
+                                    <td class="py-3"><i class="ci-rupee"></i><%=order.totalAmt%>.00</td>
+                    </tr>
+                    <%})}%>
+
+                    </tbody>
+                    </table>
+                </div>
+                <% if (orders.length>0) { %>
+                <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="/orders?page=<%=previousPage%>">
+                            <i class="ci-arrow-left me-2"></i>Prev</a>
+                        </li>
+                    </ul>
+                    <ul class="pagination">
+                        <li class="page-item d-sm-none">
+                            <span class="page-link page-link-static">1/<%=lastPage%></span>
+                        </li>
+                        <% if(currentPage!==1){%>
+                        <li class="page-item d-none d-sm-block 1">
+                            <a class="page-link" href="/orders?page=1">1</a>
+                        </li>
+                        <%}%>
+                        <% if(hasPreviousPage && previousPage!==1){%>
+                        <li class="page-item d-none d-sm-block 2">
+                            <a class="page-link" href="/orders?page=<%=previousPage%>"><%=previousPage%></a>
+                        </li>
+                        <%}%>
+                        <li class="page-item active d-none d-sm-block">
+                            <a class="page-link" href="/orders?page=<%=currentPage%>"><%=currentPage%></a>
+                        </li>
+                        <% if(hasNextPage){%>
+                        <li class="page-item d-none d-sm-block">
+                            <a class="page-link" href="/orders?page=<%=nextPage%>"><%=nextPage%></a>
+                        </li>
+                        <%}%>
+                <% if(lastPage!==currentPage && nextPage!==lastPage){%>
+                        <li class="page-item d-none d-sm-block"><a class="page-link"
+                                href="/orders?page=<%=lastPage%>"><%=lastPage%></a></li>
+                        <%}%>
+              </ul>
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/orders?page=<%=nextPage%>" aria-label="Next">Next<i
+                            class="ci-arrow-right ms-2"></i></a></li>
+                    </ul>
+                </nav>
+                <%}%>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<% if (orders.length>0) { %>
+<% orders.forEach(function(order){ %>
+<div class="modal fade" id="order-details<%=order.id%>">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Order No - <%=order.id%></h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pb-0">
+                <%if(products.length>0){%>
+                <% products.forEach(p=>{ %>
+                <%if(p.orderId==order.id){%>
+                <!-- Item-->
+                <div class="d-sm-flex justify-content-between mb-4 pb-3 pb-sm-2 border-bottom">
+                    <div class="d-sm-flex text-center text-sm-start">
+                        <a class="d-inline-block flex-shrink-0 mx-auto" href="shop-single-v1.html"
+                            style="width: 10rem;">
+                            <img src="<%=p.imageurl%>" alt="Product">
+                        </a>
+                        <div class="ps-sm-4 pt-2">
+                            <h3 class="product-title fs-base mb-2">
+                                <a href="shop-single-v1.html"><%=p.pname%></a></h3>
+                            <div class="fs-sm"><span class="text-muted me-2">Size:</span>8.5</div>
+                            <div class="fs-sm"><span class="text-muted me-2">Color:</span>White &amp;
+                                Blue</div>
+                            <div class="fs-lg text-accent pt-2"><i class="ci-rupee"></i><%=p.price%><small>.00</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+                        <div class="text-muted mb-2">Quantity:</div><%=p.qty%>
+                    </div>
+                    <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+                        <div class="text-muted mb-2">Subtotal</div><i class="ci-rupee"></i><%=p.price%><small>00</small>
+                    </div>
+                </div>
+                <%}})%>
+
+                <%}%> 
+                        </div>
+                         <!-- Footer-->
+                        <div class="modal-footer flex-wrap justify-content-between bg-secondary fs-md">
+                            <div class="px-2 py-1"><span class="text-muted">Subtotal:&nbsp;</span><span>
+                                <i class="ci-rupee"></i><%=order.subtotalAmt%><small>.00</small></span>
+            </div>
+            <div class="px-2 py-1"><span class="text-muted">Shipping:&nbsp;</span><span>
+                    <i class="ci-rupee"></i><%=order.shipping%><small>.00</small></span>
+            </div>
+            <div class="px-2 py-1"><span class="text-muted">Tax:&nbsp;</span><span>
+                    <i class="ci-rupee"></i><%=order.taxAmt%><small>.00</small></span>
+            </div>
+            <div class="px-2 py-1"><span class="text-muted">Total:&nbsp;</span><span class="fs-lg">
+                    <i class="ci-rupee"></i><%=order.totalAmt%><small>.00</small></span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<%})}%>
+<%- include('footer'); -%>

@@ -1,0 +1,141 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+  <div class="container d-lg-flex justify-content-between py-lg-3">
+    <div class="order-lg-1 pe-lg-4 text-center text-lg-start pt-1">
+      <h1 class="h3 text-light mb-0">Seller Onboarding</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row mb-0">
+    <section class="col-lg-8">
+      <!-- Steps-->
+      <div class="steps steps-light pt-2 pb-3 mb-5">
+        <a class="step-item active">
+          <div class="step-progress"><span class="step-count">1</span></div>
+          <div class="step-label"><i class="ci-user-circle"></i>Signup</div>
+        </a>
+        <a class="step-item active" href="/selleraddress">
+          <div class="step-progress"><span class="step-count">2</span></div>
+          <div class="step-label"><i class="ci-store"></i>Details</div>
+        </a>
+        <a class="step-item active" href="/sellergst">
+          <div class="step-progress"><span class="step-count">3</span></div>
+          <div class="step-label"><i class="ci-calculator"></i>GST</div>
+        </a>
+        <a class="step-item active current" href="/sellerbank">
+          <div class="step-progress"><span class="step-count">4</span></div>
+          <div class="step-label"><i class="ci-wallet"></i>Bank Details</div>
+        </a>
+        <a class="step-item" href="/complete">
+          <div class="step-progress"><span class="step-count">5</span></div>
+          <div class="step-label"><i class="ci-card"></i>Complete</div>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<% if (message){%>
+  <div class="container alert alert-danger d-flex message-div" role="alert">
+    <div class="alert-icon">
+      <i class="ci-close-circle"></i>
+    </div>
+    <div class="message"><%= message %></div>
+  </div>  
+
+<%}%>
+<!--main body-->
+<div class="container pb-3 mb-5">
+  <% if (bankdetails.length >0){ %>
+  <div class="bg-light shadow-lg rounded-3 overflow-hidden mx-2">
+   <h2 class="h3 mx-2 my-2 text-center text-sm-start">Bank Details</h2>
+   <% bankdetails.forEach(a => {%>
+    <!--address-->
+    <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 ">
+    <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+      <div class="pt-2 mx-2">
+        <h3 class="product-title fs-sm  mb-2">Account Holder:<span class="text-muted"><%= a.AccountName %></span></h3>
+        <h3 class="product-title fs-sm  mb-2">Account Num:<span class="text-muted"><%= a.AccountNum %></span></h3>
+        <h3 class="product-title fs-sm  mb-2">IFSC:<span class="text-muted"><%= a.IFSC %></span></h3>
+      </div>
+    </div>
+    <div class="pt-2 ps-sm-3 mx-3 text-center">
+      <a href="/edit-sellerbank/<%=a.id%>" class="btn btn-outline-primary btn-sm gsteditbtn" data-bs-toggle="tooltip"
+        aria-label="Edit" data-bs-original-title="Edit"><i class="ci-edit me-2"></i>Edit
+      </a>
+      
+    </div>
+    
+    </div>
+   <% }) %>
+   <div class="mx-2 d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 ">
+    <a href="/sellerbank" class="btn btn-primary btn-shadow btn-sm">Next<i class="ci-arrow-right me-2"></i>
+    </a>
+   </div>
+   <div class="form-text mb-1 mx-2">Note:Please save while editing  Bank details else Bank details will be conidered as unsaved.</div>
+ </div>
+
+<% }else{ %>
+<div class="bg-light shadow-lg rounded-3 overflow-hidden px-3">
+  <form class="needs-validation" novalidate action="/sellerbank" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <h2 class="h3 py-1 me-2 text-center text-sm-start">Enter Bank Details</h2>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="mb-3">
+          <label class="form-label" for="checkout-fn">Account Holder</label>
+          <%if(bankdetail1){%>
+          <input class="form-control" type="text" id="checkout-fn" name="acctname" value="<%=bankdetail1.AccountName%>" required>
+          <%}else{%>
+            <input class="form-control" type="text" id="checkout-fn" name="acctname" value="" required>
+           <%}%> 
+          <div class="invalid-feedback">Please enter Account Holder Name!</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="mb-3">
+          <label class="form-label" for="checkout-fn">Account Number</label>
+          <%if(bankdetail1){%>
+            <input class="form-control" type="text" id="checkout-fn" name="acctnum" value="<%=bankdetail1.AccountNum%>" required>
+            <%}else{%>
+              <input class="form-control" type="text" id="checkout-fn" name="acctnum" value="" required>
+             <%}%> 
+       
+          <div class="invalid-feedback">Please enter Account Num!</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="mb-3">
+          <label class="form-label" for="checkout-phone">IFSC Code</label>
+          <%if(bankdetail1){%>
+            <input class="form-control" type="text" id="checkout-fn" name="ifsc" value="<%=bankdetail1.IFSC%>" required>
+            <%}else{%>
+              <input class="form-control" type="text" id="checkout-fn" name="ifsc" value="" required>
+             <%}%> 
+         
+          <div class="invalid-feedback">Please enter IFSC code!</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-4">
+        <div class="mb-3">
+          <a href="/sellergst" class="btn btn-secondary w-100">Back to GST</a>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="mb-3">
+          <button class="btn btn-primary bankBtn w-100" type="submit">
+            <span class="d-none d-sm-inline">Save</span><span class="d-inline d-sm-none">Save</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+<% }%>
+</div>
+<%- include('footer'); -%>

@@ -1,0 +1,63 @@
+<div class="col-lg-4 pe-xl-5">
+  <div class="d-block d-lg-none p-4"><a class="btn btn-outline-accent d-block" href="#account-menu" data-bs-toggle="collapse" aria-expanded="true"><i class="fas fa-bars me-2"></i></i>Account menu</a></div>
+  <div class="h-100 border-end mb-2">
+    <div class="d-lg-block collapse" id="account-menu">
+      <div class="bg-secondary p-4">
+        <h3 class="fs-sm mb-0 text-muted">Account</h3>
+      </div>
+      <ul class="list-unstyled mb-0">
+        <li class="border-bottom mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/edit-signin">
+            <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Profile</a>
+        </li>
+        <li class="border-bottom mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
+            <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
+        </li>
+        <li class="border-bottom mb-0">
+          <a class="btn nav-link-style d-flex align-items-center px-4 py-3" href="/add-address">
+            <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Add Address</a>
+        </li>
+        <li class="border-bottom mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-purchases.html">
+            <i class="fa fa-shopping-cart opacity-60 me-2" aria-hidden="true"></i>Purchases</a>
+        </li>
+        <li class="mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-favorites.html">
+            <i class="far fa-heart opacity-60 me-2" aria-hidden="true"></i>Favorites<span class="fs-sm text-muted ms-auto">4</span>
+          </a>
+        </li>
+      </ul>
+      <div class="bg-secondary p-4">
+        <h3 class="fs-sm mb-0 text-muted">Seller Dashboard</h3>
+      </div>
+      <ul class="list-unstyled mb-0">
+        <li class="border-bottom mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-sales.html">
+            <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Sales<span class="fs-sm text-muted ms-auto">$1,375.00</span>
+          </a>
+        </li>
+        <li class="border-bottom mb-0">
+          <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/products">
+            <i class="fa fa-box opacity-60 me-2" aria-hidden="true"></i>Products<span class="fs-sm text-muted ms-auto">5</span>
+          </a>
+        </li>
+        <li class="border-bottom mb-0">
+          <a class="btn nav-link-style active d-flex align-items-center px-4 py-3" href="/add-product">
+            <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
+        </li>
+        <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-payouts.html">
+            <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
+        </li>
+
+        <li class="mb-0">
+          <form action="/signout" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+            <button class="btn nav-link-style d-flex align-items-center px-4 py-3" type="submit">
+              <i class="fa fa-arrow-left opacity-60 me-2" aria-hidden="true"></i> Sign out</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="modal fade" id="signin-modal" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <ul class="nav card-header-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link fw-medium " href="#signin-tab" data-bs-toggle="tab" role="tab" aria-selected="true">
+              <i class="fas fa-unlock me-2 mt-n1"></i>
+              Sign in
+            </a>
+          </li>
+
+        </ul>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body tab-content py-4">
+        <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate="" id="signin-tab">
+          <a class="btn btn-primary btn-shadow bg-google d-block w-100 mb-3" href="/auth/google" type="submit">
+            <i class="fab fa-fw fa-google me-2"></i> Login with Google</a>
+          <a class="btn btn-primary btn-shadow bg-fb d-block w-100" href="/auth/google" type="submit">
+            <i class="fab fa-fw fa-facebook-f me-2"></i> Login with Facebook</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

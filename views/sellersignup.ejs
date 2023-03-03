@@ -1,0 +1,163 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+    <div class="container d-lg-flex justify-content-between py-lg-3">
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start pt-1">
+            <h1 class="h3 text-light mb-0">Seller Onboarding</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mb-0">
+        <section class="col-lg-8">
+            <!-- Steps-->
+            <div class="steps steps-light pt-2 pb-3 mb-5">
+                <a class="step-item active current" href="/sellersignin">
+                    <div class="step-progress"><span class="step-count">1</span></div>
+                    <div class="step-label"><i class="ci-user-circle"></i>Signup</div>
+                </a>
+                <a class="step-item" href="/checkout">
+                    <div class="step-progress"><span class="step-count">2</span></div>
+                    <div class="step-label"><i class="ci-store"></i>Details</div>
+                </a>
+                <a class="step-item" href="/payment">
+                    <div class="step-progress"><span class="step-count">3</span></div>
+                    <div class="step-label"><i class="ci-calculator"></i>GST</div>
+                </a>
+                <a class="step-item" href="/payment">
+                    <div class="step-progress"><span class="step-count">4</span></div>
+                    <div class="step-label"><i class="ci-wallet"></i>Bank Details</div>
+                </a>
+                <a class="step-item" href="/complete">
+                    <div class="step-progress"><span class="step-count">5</span></div>
+                    <div class="step-label"><i class="ci-card"></i>Complete</div>
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+<!--Main body-->
+<section>
+    <div class="container py-5 py-lg-2 my-5">
+        <div class="row">
+            <% if (message){%>
+            <div class="container alert alert-danger d-flex message-div " role="alert">
+                <div class="alert-icon">
+                    <i class="ci-close-circle"></i>
+                </div>
+                <div class="message">
+                    <%message.forEach(msg =>{%>
+                    <%=msg%>
+                    <br>
+                    <%})%>
+                </div>
+            </div>
+            <%}%>
+    <div class="col-md-6">
+        <div class="card border-0 shadow">
+            <div class="card-body">
+                <h2 class="h4 mb-3">Seller Sign up</h2>
+                <p class="fs-sm text-muted mb-4">Registration takes less than a minute but gives you full
+                    control over
+                    your
+                    orders.
+                </p>
+                <form class="row needs-validation" action="/sellersignup" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <div class="row gx-4 gy-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-fn">First Name</label>
+                            <input class="form-control <%=userdata1.firstNameStatus%>" type="text" required="" id="reg-fn" name="first_name" value="<%=userdata1.firstName%>">
+                            <div class="invalid-feedback">Please enter your first name!</div>
+                            <div data-lastpass-icon-root="true"
+                                style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-ln">Last Name</label>
+                            <input class="form-control <%=userdata1.lastNameStatus%>" type="text" required="" id="reg-ln" name="last_name" value="<%=userdata1.lastName%>">
+                            <div class="invalid-feedback">Please enter your last name!</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-email">E-mail Address</label>
+                            <input class="form-control <%=userdata1.emailStatus%>" type="email" required="" id="reg-email" name="email" value="<%=userdata1.email%>">
+                            <div class="invalid-feedback">Please enter valid email address!</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-phone">Phone Number</label>
+                            <input class="form-control <%=userdata1.mobileStatus%>" type="text" required="" id="reg-phone" name="mobile" value="<%=userdata1.MOBILE%>">
+                            <div class="invalid-feedback">Please enter your phone number!</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-password">Password</label>
+                            <input class="form-control <%=userdata1.passwordStatus%>" type="password" required="" id="reg-password" name="password" value="<%=userdata1.PASSWORD%>">
+                            <div class="invalid-feedback">Please enter password!</div>
+                            <div data-lastpass-icon-root="true"
+                                style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-password-confirm">Confirm Password</label>
+                            <input class="form-control <%=userdata1.confirmpasswordStatus%>" type="password" required="" id="reg-password-confirm"
+                                name="confirmpassword" value="<%=userdata1.confirmpassword%>">
+                            <div class="invalid-feedback">Passwords do not match!</div>
+                            <div data-lastpass-icon-root="true"
+                                style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                            </div>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button class="btn btn-primary" type="submit"><i class="ci-user me-2 ms-n1"></i>Sign
+                                Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 pt-4 mt-3 mt-md-0 ">
+        <h2 class="h4 mb-3">Why Stationary Station?</h2>
+        <div class="row">
+            <div class="col-md-6 pt-4 mt-3 mt-md-0 jPUUAm">
+                <img width="54px" src="images/GrowthSellIcon.svg" alt="">
+                <div class="styles__Description-pzf88n-22 dffERP">
+                    <h3 class="form-label">Growth</h3>
+                    <p class="fs-sm text-muted mb-4">Widen your reach to a customer base of 1
+                        billion and grow your business further with the support of Account managers.</p>
+
+                </div>
+            </div>
+            <div class="col-md-6 pt-4 mt-3 mt-md-0 jPUUAm">
+                <img width="54px" src="images/GrowthSellIcon.svg" alt="">
+                <div class="styles__Description-pzf88n-22 dffERP">
+                    <h3 class="form-label">Growth</h3>
+                    <p class="fs-sm text-muted mb-4">Widen your reach to a customer base of 1
+                        billion and grow your business further with the support of Account managers.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pt-4 mt-3 mt-md-0 jPUUAm">
+                <img width="54px" src="images/GrowthSellIcon.svg" alt="">
+                <div class="styles__Description-pzf88n-22 dffERP">
+                    <h3 class="form-label">Growth</h3>
+                    <p class="fs-sm text-muted mb-4">Widen your reach to a customer base of 1
+                        billion and grow your business further with the support of Account managers.</p>
+
+                </div>
+            </div>
+            <div class="col-md-6 pt-4 mt-3 mt-md-0 jPUUAm">
+                <img width="54px" src="images/GrowthSellIcon.svg" alt="">
+                <div class="styles__Description-pzf88n-22 dffERP">
+                    <h3 class="form-label">Growth</h3>
+                    <p class="fs-sm text-muted mb-4">Widen your reach to a customer base of 1
+                        billion and grow your business further with the support of Account managers.</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+</section>
+<%- include('footer'); -%>

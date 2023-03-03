@@ -1,0 +1,171 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+  <div class="container d-lg-flex justify-content-between py-lg-3">
+    <div class="order-lg-1 pe-lg-4 text-center text-lg-start pt-1">
+      <h1 class="h3 text-light mb-0">Seller Onboarding</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row mb-0">
+    <section class="col-lg-8">
+      <!-- Steps-->
+      <div class="steps steps-light pt-2 pb-3 mb-5">
+        <a class="step-item active">
+          <div class="step-progress"><span class="step-count">1</span></div>
+          <div class="step-label"><i class="ci-user-circle"></i>Signup</div>
+        </a>
+        <a class="step-item active" href="/selleraddress">
+          <div class="step-progress"><span class="step-count">2</span></div>
+          <div class="step-label"><i class="ci-store"></i>Details</div>
+        </a>
+        <a class="step-item active current" href="/sellergst">
+          <div class="step-progress"><span class="step-count">3</span></div>
+          <div class="step-label"><i class="ci-calculator"></i>GST</div>
+        </a>
+        <a class="step-item" href="/sellerbank">
+          <div class="step-progress"><span class="step-count">4</span></div>
+          <div class="step-label"><i class="ci-wallet"></i>Bank Details</div>
+        </a>
+        <a class="step-item" href="/complete">
+          <div class="step-progress"><span class="step-count">5</span></div>
+          <div class="step-label"><i class="ci-card"></i>Complete</div>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
+<% if (message){%>
+  <div class="container alert alert-danger d-flex message-div " role="alert">
+    <div class="alert-icon">
+      <i class="ci-close-circle"></i>
+    </div>
+    <div class="message1">
+      <%message.forEach(msg =>{%>
+      <%=msg%>
+      <br>
+      <%})%>
+    </div>
+  </div>
+  <%}else{%>
+<div class="container alert alert-danger d-flex message-div d-none" role="alert">
+  <div class="alert-icon">
+    <i class="ci-close-circle"></i>
+  </div>
+  <div class="message"></div>
+</div>
+<%}%>
+<!--main body-->
+<div class="container pb-3 mb-5 my-3">
+  <% if (gstdetails.length >0){ %>
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden mx-2">
+      <h2 class="h3 mx-2 my-2 text-center text-sm-start">GST Details</h2>
+      <% gstdetails.forEach(a => {%>
+        <!--address-->
+        <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 ">
+          <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+            <div class="pt-2 mx-2">
+              <h3 class="product-title fs-sm  mb-2">Business Trade:<span class="text-muted"><%= a.cname %></span></h3>
+              <h3 class="product-title fs-sm  mb-2">Company Name:<span class="text-muted"><%= a.cname %></span></h3>
+              <h3 class="product-title fs-sm  mb-2">Constitution of Business:<span class="text-muted"><%= a.ctb %></span></h3>
+              <h3 class="product-title fs-sm  mb-2">Registration Date  :<span class="text-muted"><%= a.regdate %></span></h3>
+              <h3 class="product-title fs-sm  mb-2">Taxpayer Type:<span class="text-muted"><%= a.taxtype %></span></h3>
+              <h3 class="product-title fs-sm  mb-2">Status             :<span class="text-muted"><%= a.status %></span></h3>
+            </div>
+          </div>
+          <div class="pt-2 ps-sm-3 mx-3 text-center">
+            <a href="/edit-sellergst/<%=a.id%>" class="btn btn-outline-primary btn-sm gsteditbtn" data-bs-toggle="tooltip"
+              aria-label="Edit" data-bs-original-title="Edit"><i class="ci-edit me-2"></i>Edit
+            </a>
+    
+          </div>
+        </div>
+        <% }) %>
+        <div class="mx-2 d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 ">
+          <a href="/sellerbank" class="btn btn-primary btn-shadow btn-sm">Next<i class="ci-arrow-right me-2"></i>
+          </a>
+          
+        </div>
+        <div class="form-text mb-1 mx-2">Note:Please save while editing an GST details else GST details will be conidered as unsaved.</div>
+      </div>
+    </div>
+  <% } else{ %>  
+  <div class="bg-light shadow-lg rounded-3 overflow-hidden mx-2">
+    <h2 class="h3 mx-2 text-center text-sm-start">Enter GSTIN Details</h2>
+    <form class="mx-1 my-3 needs-validation" action="/sellergst" method="POST" novalidate>
+      <div class="row mx-2 my-2">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <input class="form-control" type="text" name="GSTIN" placeholder="GSTIN" required>
+            <div class="invalid-feedback">Please enter GSTIN!</div>
+          </div>
+          <div class="col-sm-3 verify ">
+            <button class="btn btn-primary d-block w-100 gstn" type="button">verify</button>
+            <button class="btn btn-primary mb-2 me-1 loadbtn d-none" type="button"><span
+                class="spinner-border spinner-border-sm me-2" role="status"
+                aria-hidden="true"></span>Loading...</button>
+
+          </div>
+
+        </div>
+        <div class="row g-3 d-none taxpayer">
+          <h2 class="h6 py-1 mx-2 text-center text-sm-start">Taxpayer Details</h2>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="row gy-3 ">
+            <div class="col-sm-2 mt-0">
+              <label class="form-label" for="profile-name">Company Name</label>
+            </div>
+            <div class="col-sm-10 mt-0">
+              <label class="form-label cname form-text" for="profile-name"></label>
+              <input type="hidden" class="cname" name="cname" value="">
+            </div>
+            <div class="col-sm-2 mt-0">
+              <label class="form-label" for="profile-name">Business Trade Name</label>
+            </div>
+            <div class="col-sm-10 mt-0">
+              <label class="form-label btname form-text" for="profile-name"></label>
+              <input type="hidden" class="btname" name="btname" value="">
+            </div>
+            <div class="col-sm-2 mt-0">
+              <label class="form-label" for="profile-name">Registration Date</label>
+            </div>
+            <div class="col-sm-10 mt-0">
+              <label class="form-label regdate form-text" for="profile-name"></label>
+              <input type="hidden" class="regdate" name="regdate" value="">
+            </div>
+            <div class="col-sm-2 mt-0">
+              <label class="form-label" for="profile-name">GSTIN/UIN status</label>
+            </div>
+            <div class="col-sm-10 mt-0">
+              <label class="form-label UIN form-text" for="profile-name"></label>
+              <input type="hidden" class="UIN" name="UIN" value="">
+            </div>
+            <div class="col-sm-2 mt-0">
+              <label class="form-label" for="profile-name">Taxpayer Type</label>
+            </div>
+            <div class="col-sm-10 mt-0">
+              <label class="form-label taxtype form-text" for="profile-name"></label>
+              <input type="hidden" class="taxtype" name="taxtype" value="">
+            </div>
+            <div class="col-sm-2 mt-0">
+              <label class="form-label" for="profile-name">Constitution of Business</label>
+            </div>
+            <div class="col-sm-10 mt-0">
+              <label class="form-label ctb form-text" for="profile-name"></label>
+              <input type="hidden" class="ctb" name="ctb" value="">
+            </div>
+
+            <!-- Submit-->
+            <div class="d-flex flex-sm-row flex-column my-2">
+              <button class="btn btn-primary" type="submit">Save GSTN profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <% } %>
+</div>
+
+
+<%- include('footer'); -%>

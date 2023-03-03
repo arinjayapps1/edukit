@@ -1,0 +1,139 @@
+<%- include('navbar'); -%>
+    <section class="mt-5 pt-5">
+        <div class="container py-4 py-lg-5 my-4">
+            <div class="row">
+                <% if (message){%>
+                    <div class="container alert alert-danger d-flex message-div " role="alert">
+                        <div class="alert-icon">
+                          <i class="ci-close-circle"></i>
+                        </div>
+                        <div class="message">
+                          <%message.forEach(msg =>{%>
+                          <%=msg%>
+                          <br>
+                          <%})%>
+                        </div>
+                      </div>
+                <%}%>
+               <div class="col-md-6">
+                            <div class="card border-0 shadow">
+                                <div class="card-body">
+                                    <h2 class="h4 mb-1">Sign in</h2>
+                                    <div class="py-3">
+                                        <h3 class="d-inline-block align-middle fs-base fw-medium mb-2 me-2">With social
+                                            account:
+                                        </h3>
+                                        <div class="d-inline-block align-middle">
+                                            <a class="bs-google btn-social mb-2 me-2" href="/auth/google"
+                                                data-bs-toggle="tooltip" aria-label="Sign in with Google"
+                                                data-bs-original-title="Sign in with Google">
+                                                <i class="ci-google"></i>
+                                            </a>
+                                            <a class="btn-social bs-facebook me-2 mb-2" href="#"
+                                                data-bs-toggle="tooltip" aria-label="Sign in with Facebook"
+                                                data-bs-original-title="Sign in with Facebook">
+                                                <i class="ci-facebook"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h3 class="fs-base pt-4 pb-2">Or using form below</h3>
+                                    <form action="/signin" method="POST">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="input-group mb-3"><i
+                        class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                    <input class="form-control rounded-start" type="email" placeholder="Email" name="email" required="">
+                    <div data-lastpass-icon-root="true"
+                        style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                    </div>
+                </div>
+                <div class="input-group mb-3"><i
+                        class="ci-locked position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                    <div class="password-toggle w-100">
+                        <input class="form-control" type="password" placeholder="Password" name="password" required="">
+                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span
+                                class="password-toggle-indicator"></span>
+                        </label>
+                        <div data-lastpass-icon-root="true"
+                            style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" checked="" id="remember_me">
+                        <label class="form-check-label" for="remember_me">Remember me</label>
+                    </div><a class="nav-link-inline fs-sm" href="account-password-recovery.html">Forgot
+                        password?</a>
+                </div>
+                <hr class="mt-4">
+                <div class="text-end pt-4">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="ci-sign-in me-2 ms-n21"></i>Sign In</button>
+                </div>
+                </form>
+            </div>
+            </div>
+               </div>
+               <div class="col-md-6 pt-4 mt-3 mt-md-0">
+                <h2 class="h4 mb-3">No account? Sign up</h2>
+                <p class="fs-sm text-muted mb-4">Registration takes less than a minute but gives you full
+                    control over
+                    your
+                    orders.</p>
+                <form class="row needs-validation" action="/signup" method="POST" novalidate>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <div class="row gx-4 gy-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-fn">First Name</label>
+                            <input class="form-control <%=userdata1.firstNameStatus%>" type="text" required="" id="reg-fn" name="first_name" value="<%=userdata1.firstName%>">
+                            <div class="invalid-feedback">Please enter your first name!</div>
+                            <div data-lastpass-icon-root="true"
+                                style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-ln">Last Name</label>
+                            <input class="form-control <%=userdata1.lastNameStatus%>" type="text" required="" id="reg-ln" name="last_name" value="<%=userdata1.lastName%>">
+                            <div class="invalid-feedback">Please enter your last name!</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-email">E-mail Address</label>
+                            <input class="form-control <%=userdata1.emailStatus%>" type="email" required="" id="reg-email" name="email" value="<%=userdata1.email%>">
+                            <div class="invalid-feedback">Please enter valid email address!</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-phone">Phone Number</label>
+                            <input class="form-control <%=userdata1.mobileStatus%>" type="text" required="" id="reg-phone" name="mobile" value="<%=userdata1.MOBILE%>">
+                            <div class="invalid-feedback">Please enter your phone number!</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-password">Password</label>
+                            <input class="form-control <%=userdata1.passwordStatus%>" type="password" required="" id="reg-password" name="password" value="<%=userdata1.PASSWORD%>">
+                            <div class="invalid-feedback">Please enter password!</div>
+                            <div data-lastpass-icon-root="true"
+                                style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="reg-password-confirm">Confirm Password</label>
+                            <input class="form-control <%=userdata1.confirmpasswordStatus%>" type="password" required="" id="reg-password-confirm"
+                                name="confirmpassword" value="<%=userdata1.confirmpassword%>">
+                            <div class="invalid-feedback">Passwords do not match!</div>
+                            <div data-lastpass-icon-root="true"
+                                style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                            </div>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button class="btn btn-primary" type="submit"><i class="ci-user me-2 ms-n1"></i>Sign
+                                Up</button>
+                        </div>
+                    </div>
+                </form>
+               </div>
+            </div>
+        </div>
+    </section>
+    <%- include('footer'); -%>

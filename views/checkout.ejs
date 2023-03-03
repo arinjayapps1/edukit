@@ -1,0 +1,175 @@
+<%- include('navbar',{isAuthenticated:isAuthenticated}); -%>
+<div class="page-title-overlap bg-dark pt-5 mt-5">
+  <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+    <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+          <li class="breadcrumb-item"><a class="text-nowrap" href="index.html"><i class="ci-home"></i>Home</a></li>
+          <li class="breadcrumb-item text-nowrap"><a>Shop</a>
+          </li>
+          <li class="breadcrumb-item text-nowrap active" aria-current="page">Checkout</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+      <h1 class="h3 text-light mb-0">Checkout</h1>
+    </div>
+  </div>
+</div>
+<form action="/checkout" method="POST">
+  <div class="container pb-5 mb-2 mb-md-4">
+    <div class="row">
+      <section class="col-lg-8">
+        <!-- Steps-->
+        <div class="steps steps-light pt-2 pb-3 mb-5">
+          <a class="step-item active" href="/cart">
+            <div class="step-progress"><span class="step-count">1</span></div>
+            <div class="step-label"><i class="ci-cart"></i>Cart</div>
+          </a>
+          <a class="step-item active current" href="/checkout">
+            <div class="step-progress"><span class="step-count">2</span></div>
+            <div class="step-label"><i class="ci-user-circle"></i>Details</div>
+          </a>
+          <a class="step-item" href="/payment">
+            <div class="step-progress"><span class="step-count">3</span></div>
+            <div class="step-label"><i class="ci-package"></i>Payment</div>
+          </a>
+          <a class="step-item" href="/complete">
+            <div class="step-progress"><span class="step-count">4</span></div>
+            <div class="step-label"><i class="ci-card"></i>Complete</div>
+          </a>
+        </div>
+        <!-- Autor info-->
+        <% if (message){%>
+
+        <div class="alert alert-danger d-flex" role="alert">
+          <div class="alert-icon">
+            <i class="ci-close-circle"></i>
+          </div>
+          <div class="message"><%= message %></div>
+        </div>
+
+        <%}%>
+
+        <!-- Shipping address-->
+        <h2 class="h6 pt-1 pb-2 mb-1 border-bottom">Shipping address</h2>
+        <% addresses.forEach(a => {%>
+        <!-- Item-->
+        <div class="d-sm-flex justify-content-between align-items-center my-1 pb-1 border-bottom">
+          <div class="d-block d-sm-flex align-items-center text-center text-sm-start">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="<%=a.id %>" name="shipaddress" value="<%= a.id %>">
+
+            </div>
+            <div class="pt-2">
+              <h3 class="product-title fs-base mb-2"><%= a.name %></h3>
+              <h4 class="product-title fs-sm text-muted mb-2"><%= a.addressLine1 %>,<%= a.addressLine2 %></h4>
+              <h4 class="product-title fs-sm text-muted mb-2"><%= a.city %>-<%= a.zipcode %></h4>
+              <h4 class="product-title fs-sm text-muted mb-2"><%= a.state %>,<%= a.country %></h4>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- Item-->
+        <% }) %>
+        <a class="btn btn-primary d-block w-100" href="/address">
+          <span class="d-none d-sm-inline">Add a new address</span>
+          <span class="d-inline d-sm-none">Add a new address</span>
+        </a>
+        <!-- Navigation (desktop)-->
+      </section>
+      <!-- Sidebar-->
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <aside class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
+        <div class="bg-white rounded-3 shadow-lg p-4 ms-lg-auto">
+          <div class="py-2 px-xl-2">
+            <div class="widget mb-3">
+              <h2 class="widget-title text-center">Order summary</h2>
+              <% products.forEach(p => {%>
+              <div class="d-flex align-items-center pb-2 py-2 border-bottom">
+                <a class="d-block flex-shrink-0" href="shop-single-v1.html"><img src=<%= p.imageUrl %> width="64"
+                    alt="Product"></a>
+                <div class="ps-2">
+                  <h6 class="widget-product-title"><a href="shop-single-v1.html"><%= p.name %></a></h6>
+                  <div class="widget-product-meta"><span
+                      class="text-accent me-2"><%= p.discPrice %><small>.00</small></span><span class="text-muted">x
+                      <%= p.cartItem.quantity %></span></div>
+                </div>
+              </div>
+              <% }) %>
+
+
+            </div>
+            <ul class="list-unstyled fs-sm pb-2 border-bottom">
+
+              <input type="hidden" name="cartAmount" value="<%= cartAmount%>">
+              <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span
+                  class="text-end">Rs.<%= cartAmount%></span></li>
+              <input type="hidden" name="shippingAmount" value="<%= shippingAmount%>">
+              <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span
+                  class="text-end">Rs.<%= shippingAmount%></span></li>
+              <input type="hidden" name="taxAmt" value="<%= taxAmt%>">
+              <li class="d-flex justify-content-between align-items-center"><span class="me-2">Taxes:</span><span
+                  class="text-end">Rs.<%= taxAmt%></span></li>
+              <input type="hidden" name="discAmt" value="<%= discAmt%>">
+              <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span
+                  class="text-end">Rs.<%= discAmt%></span></li>
+            </ul>
+            <input type="hidden" name="totalAmount" value="<%= totalAmount%>">
+            <h3 class="fw-normal text-center my-4">Rs.<%= totalAmount%></h3>
+
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="row d-none d-lg-flex">
+      <div class="col-lg-8">
+        <div class="d-none d-lg-flex pt-4 mt-3">
+          <div class="w-50 pe-3">
+            <a class="btn btn-secondary d-block w-100" href="/cart">
+              <i class="fa fa-arrow-left mt-sm-0 me-2"></i>
+              <span class="d-none d-sm-inline">Back to Cart</span>
+              <span class="d-inline d-sm-none">Back</span>
+            </a>
+          </div>
+          <div class="w-50 ps-2">
+
+
+            <button class="btn btn-primary d-block w-100" type="submit">
+              <span class="d-none d-sm-inline">Proceed to Payment</span>
+              <span class="d-inline d-sm-none">Next</span>
+              <i class="fa fa-arrow-right mt-sm-0 ms-1"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- desktop navigation-->
+
+    <!-- Navigation (mobile)-->
+    <div class="row d-lg-none">
+      <div class="col-lg-8">
+        <div class="d-flex pt-4 mt-3">
+          <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100" href="/cart">
+              <i class="ci-arrow-left mt-sm-0 me-1"></i>
+              <span class="d-none d-sm-inline">Back to Cart</span><span class="d-inline d-sm-none">Back</span></a></div>
+          <div class="w-50 ps-2">
+
+            <button class="btn btn-primary razor-pay d-block w-100" type="submit">
+              <span class="d-none d-sm-inline">Pay</span><span class="d-inline d-sm-none">Pay</span>
+              <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</form>
+<%- include('footer'); -%>

@@ -1,0 +1,264 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+  <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-5">
+    <!--<div class="d-flex align-items-center pb-3">-->
+      <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2 ">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+            <li class="breadcrumb-item">
+              <a class="text-nowrap" href="/">
+                <i class="ci-home"></i>Home
+              </a>
+            </li>
+            <li class="breadcrumb-item text-nowrap"><a href="#">Account</a>
+            </li>
+            <li class="breadcrumb-item text-nowrap active" aria-current="page">Add Product</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+        <h1 class="h3 text-light mb-0">Add Products</h1>
+      </div>
+      <!--<div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem;">
+        <img class="rounded-circle" src="/images/avatar.png" alt="Createx Studio">
+      </div>
+      <div class="ps-3">
+        <h3 class="text-light fs-lg mb-0">Createx Studio</h3>
+        <span class="d-block text-light fs-ms opacity-60 py-1">Member since November 2019</span>
+      </div>-->
+    <!--</div>-->
+    <!--<div class="d-flex">
+      <div class="text-sm-end me-5">
+        <div class="text-light fs-base">Total sales</div>
+        <h3 class="text-light">426</h3>
+      </div>
+      <div class="text-sm-end">
+        <div class="text-light fs-base">Seller rating</div>
+        <div class="star-rating">
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star"></i>
+        </div>
+        <div class="text-light opacity-60 fs-xs">Based on 98 reviews</div>
+      </div>
+    </div>-->
+  </div>
+</div>
+<div class="container mb-5 pb-3 pt-3">
+  <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+    <div class="row">
+      <div class="col-lg-4 pe-xl-5">
+        <div class="d-block d-lg-none p-4"><a class="btn btn-outline-accent d-block" href="#account-menu"
+            data-bs-toggle="collapse" aria-expanded="true"><i class="fas fa-bars me-2"></i></i>Account menu</a></div>
+        <div class="h-100 border-end mb-2">
+          <div class="d-lg-block collapse" id="account-menu">
+            <div class="bg-secondary p-4">
+              <h3 class="fs-sm mb-0 text-muted">Account</h3>
+            </div>
+            <ul class="list-unstyled mb-0">
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/edit-signin">
+                  <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Profile</a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
+                  <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="btn nav-link-style  d-flex align-items-center px-4 py-3" href="/addresses">
+                  <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Addresses</a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-purchases.html">
+                  <i class="fa fa-shopping-cart opacity-60 me-2" aria-hidden="true"></i>Purchases</a></li>
+              <li class="mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-favorites.html">
+                  <i class="far fa-heart opacity-60 me-2" aria-hidden="true"></i>Favorites<span
+                    class="fs-sm text-muted ms-auto">4</span>
+                </a>
+              </li>
+            </ul>
+            <div class="bg-secondary p-4">
+              <h3 class="fs-sm mb-0 text-muted">Seller Dashboard</h3>
+            </div>
+            <ul class="list-unstyled mb-0">
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-sales.html">
+                  <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Sales<span
+                    class="fs-sm text-muted ms-auto">$1,375.00</span>
+                </a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/products">
+                  <i class="fa fa-box opacity-60 me-2" aria-hidden="true"></i>Products<span
+                    class="fs-sm text-muted ms-auto">5</span>
+                </a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="btn nav-link-style active d-flex align-items-center px-4 py-3" href="/add-product">
+                  <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
+              </li>
+              <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3"
+                  href="dashboard-payouts.html">
+                  <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
+              </li>
+
+              <li class="mb-0">
+                <form action="/signout" method="POST">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                  <button class="btn nav-link-style d-flex align-items-center px-4 py-3" type="submit">
+                    <i class="fa fa-arrow-left opacity-60 me-2" aria-hidden="true"></i> Sign out</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 pt-lg-4 pb-4">
+        <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+          <!--title-->
+          <% if (message){%>
+          <div class="container alert alert-danger d-flex message-div " role="alert">
+            <div class="alert-icon">
+              <i class="ci-close-circle"></i>
+            </div>
+            <div class="message">
+              <%message.forEach(msg =>{%>
+              <%=msg%>
+              <br>
+              <%})%>
+            </div>
+          </div>
+          <%}%>
+            <form action="/add-product-book" class="" method="POST" enctype="multipart/form-data">
+              <div class="d-sm-flex flex-wrap justify-content-between align-items-center pb-2">
+                <h2 class="h3 py-2 me-2 text-center text-sm-start">Add School Books</h2>
+                <div class="py-2">
+                  <select class="form-select me-2 <%=product.categoryStatus%>" id="item-category" name="category">
+
+          <% if(product.category) { %>
+          <option value="<%=product.categoryId %>"><%=product.category %></option>
+          <%}else{%>
+          <option>Select Category</option>
+          <%}%>
+                    <% if(categories) { %>
+          <% categories.forEach(function(category){ %>
+          <option value=<%= category.id %>><%= category.Name %></option>
+          <% } )} %>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3 pb-2">
+        <label class="form-label" for="product-name">Product name</label>
+        <input class="form-control <%=product.nameStatus%>" type="text" id="prod-name" name="product_name"
+          value="<%=product.productName %>">
+        <div class="form-text">Maximum 100 characters. No HTML or emoji allowed.</div>
+      </div>
+      <div class="mb-3 py-2">
+        <label class="form-label" for="product-description">Product description</label>
+        <textarea class="form-control <%=product.descStatus%>" rows="5" id="product-description"
+          name="product_desc"><%=product.productDesc%></textarea>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="subject">Subject</label>
+          <select class="form-select me-2 <%=product.subjectStatus%>" id="item-category" name="subject">
+
+            <% if(product.subject) { %>
+            <option value="<%=product.subjectId %>"><%=product.subject %></option>
+            <%}else{%>
+            <option>Select Subject</option>
+            <%}%>
+                    <% if(subjects) { %>
+            <% subjects.forEach(function(subject){ %>
+            <option value="<%=subject.id%>""><%=subject.Name%></option>
+                      <%})} %>
+                  </select>
+                </div>
+                <div class=" col-sm-6 mb-3">
+              <label class="form-label" for="class">Class</label>
+              <select class="form-select me-2 <%=product.classStatus%>" id="class" name="class">
+                <% if(product.className) { %>
+                <option value="<%=product.classId %>"><%=product.className %></option>
+                <%}else{%>
+                <option>Select Class</option>
+                <%}%>
+                    <% if(classes) {%>
+                <% classes.forEach(function(c){%>
+                <option value=<%= c.id %>><%= c.Name %></option>
+                <%})}%>
+
+              </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="author">Author</label>
+          <input class="form-control <%=product.authorStatus%>" type="text" id="author" name="author"
+            value=<%=product.author %>>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="publisher">Publisher</label>
+          <input class="form-control <%=product.publisherStatus%>" type="text" id="publisher" name="publisher"
+            value=<%=product.publisher %>>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="orig-price">Stock Quantity</label>
+          <input class="form-control <%=product.stockQtyStatus%>" type="number" id="stock_qty" name="stock_qty" min="1"
+            value=<%=product.stockQty %>>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="orig-price">GST Percent</label>
+          <select class="form-select me-2 <%=product.taxStatus%>" id="class" name="tax">
+            <% if(product.tax) { %>
+            <option value=<%=product.taxId %>><%=product.tax %></option>
+            <%}%>
+                  
+                    <% if(taxes) { %>
+            <% taxes.forEach(function(tax){ %>
+            <option value="<%= tax.id %>"><%= tax.taxName %></option>
+            <% } )} %>
+          </select>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="orig-price">Original price</label>
+          <div class="input-group"><span class="input-group-text">Rs.</span>
+            <input class="form-control <%=product.origPriceStatus%>" type="number" id="orig_price" name="orig_price"
+              min="1" value=<%=product.origPrice%>>
+            <div class="form-text">No discount then keep Original and put Discounted price as 0.</div>
+          </div>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="disc-price">Discounted Price</label>
+          <div class="input-group"><span class="input-group-text">Rs.</span>
+            <input class="form-control <%=product.discPriceStatus%>" type="number" id="disc_price" name="disc_price"
+              min="0" value=<%=product.discPrice%>>
+          </div>
+        </div>
+
+      </div>
+      <div class="mb-3 pb-2 my-3">
+        <label class="form-label" for="product-image">Product Image File</label>
+        <input class="form-control" type="file" id="image" name="image">
+        <div class="form-text">Maximum file size is 1GB</div>
+      </div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button class="btn btn-primary d-block w-100" type="submit">
+        <i class="ci-cloud-upload fs-lg me-2"></i>Add Product
+      </button>
+      </form>
+      </div>
+      </div>
+
+</div>
+</div>
+</div>
+<%- include('footer'); -%>

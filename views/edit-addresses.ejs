@@ -1,0 +1,192 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-accent pt-4 mt-5">
+  <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-2">
+    <div class="d-flex align-items-center pb-3">
+      <div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem;">
+        <img class="rounded-circle" src="/images/avatar.png" alt="Createx Studio"></div>
+      <div class="ps-3">
+        <h3 class="text-light fs-lg mb-0">Createx Studio</h3>
+        <span class="d-block text-light fs-ms opacity-60 py-1">Member since November 2019</span>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="text-sm-end me-5">
+        <div class="text-light fs-base">Total sales</div>
+        <h3 class="text-light">426</h3>
+      </div>
+      <div class="text-sm-end">
+        <div class="text-light fs-base">Seller rating</div>
+        <div class="star-rating">
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star-filled active"></i>
+          <i class="star-rating-icon ci-star"></i>
+        </div>
+        <div class="text-light opacity-60 fs-xs">Based on 98 reviews</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mb-5 pb-3">
+  <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+  <div class="row">
+      <div class="col-lg-4 pe-xl-5">
+        <div class="d-block d-lg-none p-4"><a class="btn btn-outline-accent d-block" href="#account-menu" data-bs-toggle="collapse" aria-expanded="true"><i class="fas fa-bars me-2"></i></i>Account menu</a></div>
+        <div class="h-100 border-end mb-2">
+          <div class="d-lg-block collapse" id="account-menu">
+            <div class="bg-secondary p-4">
+              <h3 class="fs-sm mb-0 text-muted">Account</h3>
+            </div>
+            <ul class="list-unstyled mb-0">
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/edit-signin">
+                  <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Profile</a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
+                  <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="btn nav-link-style active d-flex align-items-center px-4 py-3" href="/addresses">
+                  <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Addresses</a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-purchases.html">
+                  <i class="fa fa-shopping-cart opacity-60 me-2" aria-hidden="true"></i>Purchases</a></li>
+              <li class="mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-favorites.html">
+                  <i class="far fa-heart opacity-60 me-2" aria-hidden="true"></i>Favorites<span class="fs-sm text-muted ms-auto">4</span>
+                </a>
+              </li>
+            </ul>
+            <div class="bg-secondary p-4">
+              <h3 class="fs-sm mb-0 text-muted">Seller Dashboard</h3>
+            </div>
+            <ul class="list-unstyled mb-0">
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-sales.html">
+                  <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Sales<span class="fs-sm text-muted ms-auto">$1,375.00</span>
+                </a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/products">
+                  <i class="fa fa-box opacity-60 me-2" aria-hidden="true"></i>Products<span class="fs-sm text-muted ms-auto">5</span>
+                </a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="btn nav-link-style active d-flex align-items-center px-4 py-3" href="/add-product">
+                  <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
+              </li>
+              <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-payouts.html">
+                  <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
+              </li>
+
+              <li class="mb-0">
+                <form action="/signout" method="POST">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                  <button class="btn nav-link-style d-flex align-items-center px-4 py-3" type="submit">
+                    <i class="fa fa-arrow-left opacity-60 me-2" aria-hidden="true"></i> Sign out</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 pt-lg-4 pb-4">
+        <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+          <!--title-->
+          <div class="d-sm-flex flex-wrap justify-content-between align-items-center pb-2">
+            <h2 class="h3 py-2 me-2 text-center text-sm-start">Edit Address</h2>
+          </div>
+          <form class="px-3" action="/edit-addresses" method="POST">
+            <input type="hidden" name="locationId" value="<%= location.id %>">
+            <!-- Shipping address-->
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="checkout-fn">Name</label>
+                  <input class="form-control" type="text" id="checkout-fn" name="Name" value="<%= location.name %>">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="checkout-phone">Phone Number</label>
+                  <input class="form-control" type="text" id="checkout-phone" name="phone">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="checkout-address-1">Address 1</label>
+                  <input class="form-control" type="text" id="checkout-address-1" name="address1" value="<%= location.addressLine1 %>">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="checkout-address-2">Address 2</label>
+                  <input class="form-control" type="text" id="checkout-address-2" name="address2" value="<%= location.addressLine2 %>">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="checkout-city">State</label>
+                  <select class="form-select" id="checkout-city" name="state">
+                    <option>Choose state</option>
+                    <option>Haryana</option>
+                    <option>Delhi</option>
+                    <option>Uttarpradesh</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="checkout-city">City</label>
+                  <select class="form-select" id="checkout-city" name="city">
+                    <option>Choose city</option>
+                    <option>Delhi</option>
+                    <option>Faridabad</option>
+                    <option>Noida</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label" for="checkout-zip">ZIP Code</label>
+                  <input class="form-control" type="text" id="checkout-zip" name="zipcode" value="<%= location.zipcode %>">
+                </div>
+              </div>
+
+            </div>
+
+
+            <!-- Navigation (desktop)-->
+            <div class="px-5 mx-5 mt-3 align-items-center justify-content-center pb-3">
+
+
+              <div class="mx-5 px-5 align-items-center justify-content-center">
+
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn btn-primary d-block w-100" type="submit">
+                  <span class="d-none d-sm-inline">Save</span>
+                  <span class="d-inline d-sm-none">Save</span>
+                </button>
+              </div>
+
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+<%- include('footer'); -%>
