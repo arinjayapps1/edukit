@@ -24,7 +24,7 @@ btn.addEventListener('click',(event)=>{
     (result)=>{
         //console.log("result"+result);
         if (result.status===402){
-            window.location.assign("http://localhost:3000/signin");
+            window.location.assign("https://jellyfish-app-7yuf9.ondigitalocean.app/signin");
         }
         if(result.status===200){
             return result.json();
