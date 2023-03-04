@@ -75,8 +75,8 @@ app.use(session({
 }));
 
 
-//app.use(express.static("public"));
-app.use('/static', express.static('public'));
+app.use(express.static("public"));
+//app.use('/static', express.static('public'));
 app.use(Passport.initialize());
 app.use(Passport.session());
 app.use(flash());
