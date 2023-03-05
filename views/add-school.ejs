@@ -21,7 +21,7 @@
         </div>
       </div>
       <%}%>
-    <form class="px-3 py-4" action="/add-school" method="POST">
+    <form class="px-3 py-4" action="/add-school" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="mb-3 pb-2">
             <label class="form-label" for="product-name">School Name</label>

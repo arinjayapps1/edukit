@@ -474,10 +474,10 @@ exports.getCheckout = async(req, res) => {
       }
       });
       
-      console.log(`cartAmount:${cartAmount}`);
-      console.log(`taxAmt:${taxAmt}`);
-      console.log(`discAmt:${discAmt}`);
-      console.log(`shippingAmount:${shippingAmount}`);
+      //console.log(`cartAmount:${cartAmount}`);
+      //console.log(`taxAmt:${taxAmt}`);
+      //console.log(`discAmt:${discAmt}`);
+      //console.log(`shippingAmount:${shippingAmount}`);
       totalAmount = Math.ceil((cartAmount + shippingAmount + taxAmt) - discAmt);
       console.log(`totalAmount:${totalAmount}`);
       res.render('checkout', {

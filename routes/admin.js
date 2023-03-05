@@ -7,11 +7,12 @@ const isAuth = require("../middleware/isAuth");
 const router = express.Router();
 const csrf = require("csurf");
 var csrfProtection = csrf();
+const isBuyer=require("../middleware/isBuyer");
 
-router.get("/add-product-book",isAuth,adminController.getAddProductBook)
-router.get("/add-product", isAuth, adminController.getAddProduct);
-router.get("/products", isAuth, adminController.getProducts);
-router.post("/add-product-book", [
+router.get("/add-product-book",isAuth,isBuyer,adminController.getAddProductBook)
+router.get("/add-product", isAuth,adminController.getAddProduct);
+router.get("/products", isAuth, isBuyer,adminController.getProducts);
+router.post("/add-product-book",isAuth, isBuyer, [
   body('product_name', 'Product Name cannot be empty and should contains ateast 4 characters.')
   .not().isEmpty().isString().isLength({
     min: 4
@@ -78,19 +79,19 @@ router.post("/add-product-book", [
       }
     })
 .withMessage('Images cannot be empty and it should be with extensions png/jpg/jpeg.')
-], isAuth, adminController.PostAddProductBook);
+], adminController.PostAddProductBook);
 
-router.get("/edit-product/:productId", isAuth, adminController.getEditProduct);
-router.post("/edit-product", isAuth, adminController.postEditProduct);
-router.post("/delete-product", isAuth, adminController.postDeleteProduct);
-router.get("/add-category", isAuth, adminController.getAddCategory);
-router.post("/add-category", [body('categoryName', 'Category Name cannot be empty and should contains ateast 4 characters.')
+router.get("/edit-product/:productId", isAuth,isBuyer, adminController.getEditProduct);
+router.post("/edit-product", isAuth, isBuyer,adminController.postEditProduct);
+router.post("/delete-product", isAuth, isBuyer,adminController.postDeleteProduct);
+router.get("/add-category", isAuth, isBuyer,adminController.getAddCategory);
+router.post("/add-category",isAuth, isBuyer,[body('categoryName', 'Category Name cannot be empty and should contains ateast 4 characters.')
   .not().isEmpty().isString().isLength({
     min: 4
   }).trim()
-], isAuth, adminController.postAddCategory);
-router.get("/add-school",adminController.getAddSchool);
-router.post("/add-school",[
+],  adminController.postAddCategory);
+router.get("/add-school",isAuth, isBuyer,adminController.getAddSchool);
+router.post("/add-school",isAuth, isBuyer,[
   body('schoolName', 'School Name cannot be empty and should be atleast 5 character').not().isEmpty().isString().isLength({
   min: 5
 }).trim(),
@@ -118,8 +119,8 @@ body('zipcode').custom((value,{req})=>{
   }
   return true;
 })
-],adminController.postAddSchool);
-router.get("/school",adminController.getSchool);
-
+],isAuth,adminController.postAddSchool);
+router.get("/school",isAuth, isBuyer,adminController.getSchool);
+router.post("/school",isAuth, isBuyer,adminController.postSchool);
 
 module.exports = router;

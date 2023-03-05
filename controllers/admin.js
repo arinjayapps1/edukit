@@ -424,8 +424,9 @@ exports.PostAddProductBook = async (req, res) => {
         res.redirect("/add-product-book");
       });
     } else {
-      console.log("req.body");
+      //console.log("req.body");
       console.log(req.body);
+      console.log(req.file);
       console.log("before uplaoding image");
           data = await Spaces.uploadFileToS3({
             file: req.file
@@ -704,9 +705,64 @@ exports.PostAddProductBook = async (req, res) => {
 };
 
 exports.getSchool=async(req,res)=>{
-  console.log("inside add school");
-  res.render('schools');
+  let schools;
+  let message = req.flash('message');
+  if (message.length < 1) {
+    message = null;
+  }
+  try {
+    
+    schools = await School.findAll({where :{userId:req.user.id}});
+    res.render('schools',{
+      schools:schools,
+      message:message
+    });
+  }catch(err){
+    req.flash('message', `Unexpected Error:${err}`);
+    message = req.flash('message');
+    res.render('schools',{
+      schools:schools,
+      message:message
+    });
+  }
+  
 }
+
+exports.postSchool=async(req,res)=>{
+  let cartAmount = 0;
+  let shippingAmount = 100;
+  let totalAmount = 0;
+  let taxAmt = 0;
+  let discAmt = 0;
+  let schools;
+  //console.log(req.body.shipaddress);
+  let message = req.flash('message');
+  try{
+    if (req.body.shipaddress) {
+      res.redirect("/add-bookset/" + req.body.school);
+  
+    } else {
+      schools = await School.findAll({where: {USER_ID: req.session.user.id}});
+       if (schools.length < 1) {
+        req.flash('message', 'Please add school before creating School Book Set.');
+
+      } else {
+        req.flash('message', 'No school selected.');
+      }
+      req.session.save(err => {
+        res.redirect("/school");
+      });
+    }
+  }
+  catch(err){
+   req.flash("message",`Unexpected error on checkout page:${err}`);
+   req.session.save(err => {
+    res.redirect("/school");
+  });
+  }
+
+};
+
 
 exports.getAddSchool=async(req,res)=>{
   let message=req.flash("message");
@@ -799,8 +855,11 @@ exports.postAddSchool=async(req,res)=>{
   let addressLine2 = req.body.address2;
   let userId = req.user.id;
   let location;
+  let imageUrl;
   let school;
   let states;
+  let data;
+  let data1;
   try {
     states = await zipcodes.findAll({
      attributes: [
@@ -857,8 +916,18 @@ exports.postAddSchool=async(req,res)=>{
         res.redirect("/add-school");
       });
  }
- else{
-   let school1 = await School.create({
+ else
+ {
+    console.log("before uplaoding image");
+    data = await Spaces.uploadFileToS3({file: req.file});
+    data1 = await cloudinary.uploadImage(data.Url);
+    //console.log("data1");
+    //console.log(data1);
+    //data1=null;
+    const {eager} = data1;
+    imageUrl = eager[1].url;
+    //
+    let school1 = await School.create({
     Name:schoolName,
     addressLine1:addressLine1,
     addressLine2:addressLine2,
@@ -866,9 +935,11 @@ exports.postAddSchool=async(req,res)=>{
     city: city,
     state: state,
     zipcode: zipcode,
-    userId: userId
+    userId: userId,
+    imageUrl:imageUrl
    }
    );
+   res.redirect("/school");
  }
 }
 catch(err){

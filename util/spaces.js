@@ -13,6 +13,7 @@ const s3 = new AWS.S3({endpoint: spacesEndpoint,
 
 exports.uploadFileToS3 = ({ file, ACL = "public-read" }) =>
 {
+  //console.log("inside uploadFileToS3") ;
   //console.log(file.buffer);
   const contentType = mime.contentType(file.mimetype);
   //console.log("contentType:"+contentType);
