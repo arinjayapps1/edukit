@@ -735,10 +735,11 @@ exports.postSchool=async(req,res)=>{
   let taxAmt = 0;
   let discAmt = 0;
   let schools;
-  //console.log(req.body.shipaddress);
+  console.log("inside postschool");
+  console.log(req.body.school);
   let message = req.flash('message');
   try{
-    if (req.body.shipaddress) {
+    if (req.body.school) {
       res.redirect("/add-bookset/" + req.body.school);
   
     } else {
@@ -950,4 +951,8 @@ catch(err){
   });
 
 }
+}
+
+exports.getAddBookset=async(req,res)=>{
+  //console.log(req);
 }

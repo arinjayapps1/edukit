@@ -33,6 +33,6 @@ module.exports = async (req, res, next) => {
         }
         next();
     } catch (err) {
-        console.log("Error in isChecout due to error:" + err);
+        console.log("Error in isCheckout due to error:" + err);
     }
 }
