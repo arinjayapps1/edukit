@@ -89,5 +89,37 @@ router.post("/add-category", [body('categoryName', 'Category Name cannot be empt
     min: 4
   }).trim()
 ], isAuth, adminController.postAddCategory);
+router.get("/add-school",adminController.getAddSchool);
+router.post("/add-school",[
+  body('schoolName', 'School Name cannot be empty and should be atleast 5 character').not().isEmpty().isString().isLength({
+  min: 5
+}).trim(),
+ body('address1', 'Address1 cannot be empty and should be atleast 6 characters').not().isEmpty().isString().isLength({
+  min: 6
+ }).trim(),
+ body('address2', 'Address2 cannot be empty and should be atleast 6 characters').not().isEmpty().isString().isLength({
+  min: 6
+ }).trim(),
+ body('state').custom((value,{req})=>{
+  if(value=='Choose state'){
+    throw new Error('Please select valid state');
+  }
+  return true;
+}),
+body('city').custom((value,{req})=>{
+  if(value=='Choose city'){
+    throw new Error('Please select valid city');
+  }
+  return true;
+}),
+body('zipcode').custom((value,{req})=>{
+  if(value=='Choose pincode'){
+    throw new Error('Please select valid pincode');
+  }
+  return true;
+})
+],adminController.postAddSchool);
+router.get("/school",adminController.getSchool);
+
 
 module.exports = router;

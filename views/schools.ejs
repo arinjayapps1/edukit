@@ -1,0 +1,47 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+    <div class="container d-lg-flex justify-content-between py-lg-3">
+        <div class="order-lg-1 pe-lg-4 text-center text-lg-start pt-1">
+            <h1 class="h3 text-light mb-0">Add School Book sets</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+ <div class="row mb-0">
+  <section class="col-lg-8">
+    <!-- Steps-->
+    <div class="steps steps-light pt-2 pb-3 mb-1">
+      <a class="step-item active current" href="/add-school">
+         <div class="step-progress"><span class="step-count">1</span></div>
+         <div class="step-label"><i class="ci-user-circle"></i>School</div>
+      </a>
+      <a class="step-item" href="/checkout">
+         <div class="step-progress"><span class="step-count">2</span></div>
+         <div class="step-label"><i class="ci-store"></i>Add School Book Set</div>
+      </a>
+      <a class="step-item" href="/payment">
+         <div class="step-progress"><span class="step-count">3</span></div>
+         <div class="step-label"><i class="ci-calculator"></i>Add Products</div>
+      </a>
+      <a class="step-item" href="/payment">
+         <div class="step-progress"><span class="step-count">4</span></div>
+         <div class="step-label"><i class="ci-wallet"></i>Bank Details</div>
+      </a>
+      <a class="step-item" href="/complete">
+         <div class="step-progress"><span class="step-count">5</span></div>
+         <div class="step-label"><i class="ci-card"></i>Complete</div>
+      </a>
+    </div>
+  </section>
+ </div>
+</div>
+<!--Main body-->
+<div class="container pb-5 mb-2 mb-md-4">
+   <!-- Shipping address-->
+   <h2 class="h6 pt-1 pb-2 mb-1 border-bottom">Schools</h2>
+   <a class="btn btn-primary d-block w-100" href="/add-school">
+      <span class="d-none d-sm-inline">Add a new School</span>
+      <span class="d-inline d-sm-none">Add a new School</span>
+    </a>
+</div>
+<%- include('footer'); -%>

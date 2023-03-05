@@ -1,11 +1,13 @@
 const {
-  validationResult
+  body,validationResult
 } = require("express-validator");
 const sequelize = require('../util/database');
 const {
-  QueryTypes
+  QueryTypes,Sequelize, DataTypes,Op
 } = require('sequelize');
 const Product = require('../models/product');
+const zipcodes=require("../models/zipcode");
+
 
 const Category = require('../models/item-Category');
 const Class = require('../models/class');
@@ -22,6 +24,7 @@ const AWS = require('aws-sdk');
 const fs = require('fs');
 const path = require('path');
 const mime = require("mime-types");
+const School = require('../models/school');
 const {
   v4: uuid
 } = require("uuid");
@@ -699,3 +702,181 @@ exports.PostAddProductBook = async (req, res) => {
     });*/
 
 };
+
+exports.getSchool=async(req,res)=>{
+  console.log("inside add school");
+  res.render('schools');
+}
+
+exports.getAddSchool=async(req,res)=>{
+  let message=req.flash("message");
+  let school=req.session.school;
+  let states;
+  let cities ;
+  let zipcodes1;
+  let addresses;
+  console.log("inside getaddschool");
+  try {
+      
+     states = await zipcodes.findAll({
+      attributes: [
+        [Sequelize.fn('DISTINCT', Sequelize.col('state')), 'state'],
+        [Sequelize.col('state1'), 'state1']
+      ]
+    });
+      cities = await zipcodes.findAll({
+      attributes: [
+        [Sequelize.fn('DISTINCT', Sequelize.col('city')), 'city'],[Sequelize.col('state1'), 'state1']
+      ]
+    });
+      zipcodes1 = await zipcodes.findAll({
+      attributes: [
+        [Sequelize.fn('DISTINCT', Sequelize.col('pincode')), 'pincode'],[Sequelize.col('state1'), 'state1'],[Sequelize.col('city'), 'city']
+      ]
+    });
+    if (message.length < 1) {
+      message = null;
+    }
+    if (school) {
+ 
+      req.session.school = null;
+      await req.session.save();
+      states =states.filter(c=>{
+        return c.state1!=school.state1
+      });
+      cities=cities.filter(c=>{
+        return c.city!=school.city && c.state1==school.state1
+      });
+      zipcodes1=zipcodes1.filter(c=>{
+        return c.pincode!=school.pincode && c.state1==school.state1 && c.city==school.city
+      });
+      res.render('add-school', {
+        message: message,
+        school: school,
+        states: states,
+        cities: cities,
+        zipcodes: zipcodes1
+      });
+      
+    } else {
+      school = {
+        schoolName: null,
+        address1: null,
+        address2: null,
+        state: null,
+        city: null,
+        zipcode: null
+      };
+      //console.log("addresses");
+      //console.log(addresses);
+      res.render('add-school', {
+        message: message,
+        school: school,
+        states: states,
+        cities: cities,
+        zipcodes: zipcodes1
+      });
+      
+    };
+    
+  }
+  catch(err){
+    console.log(`unexpected Error:${err}`);
+    req.flash("message",`unexpected Error:${err}`);
+    message=req.flash("message");
+    
+  }
+}
+
+exports.postAddSchool=async(req,res)=>{
+  let i = 0;
+  let errmsg = [];
+  let schoolName = req.body.schoolName;
+  let city = req.body.city;
+  let state = req.body.state;
+  let zipcode = req.body.zipcode;
+  let addressLine1 = req.body.address1;
+  let addressLine2 = req.body.address2;
+  let userId = req.user.id;
+  let location;
+  let school;
+  let states;
+  try {
+    states = await zipcodes.findAll({
+     attributes: [
+       [Sequelize.fn('DISTINCT', Sequelize.col('state')), 'state'],
+       [Sequelize.col('state1'), 'state1']
+     ],
+     where:{
+       state1:state
+     }
+   });
+   school = {
+    schoolName: schoolName,
+    schoolNameStatus: 'is-valid',
+    address1: addressLine1,
+    address1Status: 'is-valid',
+    address2: addressLine2,
+    address2Status: 'is-valid',
+    state1:(states.length<1)?undefined:states[0].state1,
+    state: (states.length<1)?undefined:states[0].state,
+    stateStatus: 'is-valid',
+    city: city,
+    cityStatus: 'is-valid',
+    zipcode: zipcode,
+    zipcodeStatus: 'is-valid',
+  };
+  const valresult = validationResult(req);
+  if (!valresult.isEmpty())
+  {
+    console.log(valresult);
+    valresult.array().forEach(msg => 
+      {
+        if (!errmsg.includes(msg.msg)) {
+          errmsg[i] = msg.msg;
+        }
+         i++;
+      });
+      req.session.school = {
+        schoolName: schoolName,
+        schoolNameStatus: valresult.array().find(e => e.param === 'schoolName') ? 'is-invalid' : 'is-valid',
+        address1: addressLine1,
+        address1Status: valresult.array().find(e => e.param === 'address1') ? 'is-invalid' : 'is-valid',
+        address2: addressLine2,
+        address2Status: valresult.array().find(e => e.param === 'address2') ? 'is-invalid' : 'is-valid',
+        state1:(states.length<1)?undefined:states[0].state1,
+        state: (states.length<1)?undefined:states[0].state,
+        stateStatus: valresult.array().find(e => e.param === 'state') ? 'is-invalid' : 'is-valid',
+        city: city,
+        cityStatus: valresult.array().find(e => e.param === 'city') ? 'is-invalid' : 'is-valid',
+        zipcode: zipcode,
+        zipcodeStatus: valresult.array().find(e => e.param === 'zipcode') ? 'is-invalid' : 'is-valid',
+      }
+      req.flash("message", errmsg);
+      req.session.save(err => {
+        res.redirect("/add-school");
+      });
+ }
+ else{
+   let school1 = await School.create({
+    Name:schoolName,
+    addressLine1:addressLine1,
+    addressLine2:addressLine2,
+    country: "INDIA",
+    city: city,
+    state: state,
+    zipcode: zipcode,
+    userId: userId
+   }
+   );
+ }
+}
+catch(err){
+  req.session.school = school;
+  req.flash("message", `Unexpected Error in Adding School due to:${err}`);
+  req.session.save(err => {
+    res.redirect("/add-school");
+  });
+
+}
+}

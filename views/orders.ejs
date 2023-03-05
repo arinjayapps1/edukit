@@ -47,14 +47,14 @@
       </div>-->
     </div>
 </div>
-
 <div class="container mb-5 pb-3">
     <div class="bg-light shadow-lg rounded-3 overflow-hidden">
         <div class="row">
             <div class="col-lg-4 pe-xl-5">
                 <div class="d-block d-lg-none p-4"><a class="btn btn-outline-accent d-block" href="#account-menu"
                         data-bs-toggle="collapse" aria-expanded="true"><i class="fas fa-bars me-2"></i></i>Account
-                        menu</a></div>
+                        menu</a>
+                </div>
                 <div class="h-100 border-end mb-2">
                     <div class="d-lg-block collapse" id="account-menu">
                         <div class="bg-secondary p-4">
@@ -152,25 +152,26 @@
                                 <% if (orders.length>0) { %>
                     <% orders.forEach(function(order){ %>
                     <tr>
-                        <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="#order-details<%=order.id%>"
-                                data-bs-toggle="modal"><%=order.id%></a></td>
+                        <td class="py-3">
+                            <a class="nav-link-style fw-medium fs-sm" href="#order-details<%=order.id%>"
+                                data-bs-toggle="modal"><%=order.id%></a>
+                        </td>
                         <td class="py-3"><%= order.createdAt.toLocaleString('en-US', options);%></td>
                         <% if (order.status==="CREATED"){%>
                         <td class="py-3"><span class="badge bg-info m-0"><%=order.status%></span></td>
                         <%}%>
-                                    <% if (order.status==="DELIVERED"){%>
+                                <% if (order.status==="DELIVERED"){%>
                         <td class="py-3"><span class="badge bg-success m-0"><%=order.status%></span></td>
                         <%}%>
-                                    <% if (order.status==="CANCELLED"){%>
+                                <% if (order.status==="CANCELLED"){%>
                         <td class="py-3"><span class="badge bg-danger m-0"><%=order.status%></span></td>
                         <%}%>
-                                    <% if (order.status==="DELAYED"){%>
+                                <% if (order.status==="DELAYED"){%>
                         <td class="py-3"><span class="badge bg-warning m-0"><%=order.status%></span></td>
                         <%}%>
-                                    <td class="py-3"><i class="ci-rupee"></i><%=order.totalAmt%>.00</td>
+                                <td class="py-3"><i class="ci-rupee"></i><%=order.totalAmt%>.00</td>
                     </tr>
                     <%})}%>
-
                     </tbody>
                     </table>
                 </div>
@@ -178,7 +179,7 @@
                 <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="/orders?page=<%=previousPage%>">
-                            <i class="ci-arrow-left me-2"></i>Prev</a>
+                                <i class="ci-arrow-left me-2"></i>Prev</a>
                         </li>
                     </ul>
                     <ul class="pagination">
@@ -215,7 +216,6 @@
                 </nav>
                 <%}%>
                 </div>
-
             </div>
         </div>
     </div>
@@ -254,7 +254,7 @@
                         <div class="text-muted mb-2">Quantity:</div><%=p.qty%>
                     </div>
                     <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                        <div class="text-muted mb-2">Subtotal</div><i class="ci-rupee"></i><%=p.price%><small>00</small>
+                        <div class="text-muted mb-2">Subtotal</div><i class="ci-rupee"></i><%=p.price%><small>.00</small>
                     </div>
                 </div>
                 <%}})%>

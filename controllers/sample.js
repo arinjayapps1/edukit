@@ -650,3 +650,117 @@ cloudinary.image("data1.public_id", {transformation: [
         <i class="ci-edit"></i>
       </a>
     </div>
+
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-5 mt-5">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+      <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+        <h1 class="h3 text-light mb-0"></h1>
+      </div>
+    </div>
+</div>
+<div class="container pb-3 mb-5">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+      <form class="px-3 py-4" action="/add-school" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="mb-3 pb-2">
+            <label class="form-label" for="product-name">School Name</label>
+            <input class="form-control" type="text" id="school-name" name="schoolName"
+              value="">
+            <div class="form-text">Maximum 100 characters. No HTML or emoji allowed.</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-label" for="school-address-1">Address 1</label>
+                <input class="form-control" type="text" id="school-address-1" name="address1" value="">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-label" for="school-address-2">Address 2</label>
+                <input class="form-control" type="text" id="school-address-2" name="address2" value="">
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-label" for="school-state">State</label>
+                <select class="form-select" id="checkout-state" name="state">
+                    <% states.forEach(function(state){ %>
+                      <option value=<%= state.state1 %>><%= state.state %></option>
+                    <% } ) %>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-label" for="school-address-2">City</label>
+                <input class="form-control" type="text" id="school-address-2" name="address2" value="">
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-label" for="state">Pincode</label>
+                <input class="form-control" type="text" id="school-address-1" name="address1" value="">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-label" for="school-address-2">Country</label>
+                <input class="form-control" type="text" id="school-address-2" name="address2" value="">
+              </div>
+            </div>
+        </div>
+        <div class="mb-3 pb-2 my-3">
+            <label class="form-label" for="product-image">School Image</label>
+            <input class="form-control" type="file" id="image" name="image">
+            <div class="form-text">Maximum file size is 1GB</div>
+        </div>
+        <!-- Navigation (desktop)-->
+        <div class="row d-none d-lg-flex mb-4 ">
+          <div class="col-lg-6">
+            <div class="d-none d-lg-flex pt-4 mt-3">
+              <a class="btn btn-secondary d-block w-100" href="/cart">
+                <i class="fa fa-arrow-left mt-sm-0 me-2"></i>
+                <span class="d-none d-sm-inline">Back to Cart</span>
+                <span class="d-inline d-sm-none">Back</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-none d-lg-flex pt-4 mt-3">
+             <button class="btn btn-primary d-block w-100" type="submit">
+                  <span class="d-none d-sm-inline">Save</span>
+                  <span class="d-inline d-sm-none">Save</span>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+        <!-- Navigation (mobile)-->
+        <div class="row d-lg-none mb-4">
+        <div class="col-lg-8">
+          <div class="d-flex pt-4 mt-3">
+            <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100" href="/cart">
+                <i class="ci-arrow-left mt-sm-0 me-1"></i>
+                <span class="d-none d-sm-inline">Back to Cart</span><span class="d-inline d-sm-none">Back</span></a></div>
+            <div class="w-50 ps-2">
+  
+              <button class="btn btn-primary razor-pay d-block w-100" type="submit">
+                <span class="d-none d-sm-inline">Save</span><span class="d-inline d-sm-none">Save</span>
+                <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+              </button>
+  
+            </div>
+          </div>
+        </div>
+  
+        </div>
+      </form>  
+    </div>
+</div>
+<%- include('footer'); -%>
