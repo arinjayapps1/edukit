@@ -173,6 +173,7 @@ app.use(async (req, res, next) => {
     res.locals.categories = categories;
     res.locals.isAuthenticated = req.session.isLoggedin;
     res.locals.csrfToken = req.csrfToken();
+    res.locals.user=req.session.user;
     next();
   
   }

@@ -102,11 +102,6 @@ exports.getAddresses = (req, res) => {
     }
   }).then(
     addresses => {
-      if (addresses.length < 1) {
-        if (message) {
-          message = "Please Add shipping address before check out."
-        }
-      }
       res.render('addresses', {
         addresses: addresses
       });

@@ -1,58 +1,39 @@
 <%- include('navbar',{isAuthenticated:isAuthenticated}); -%>
 <div class="page-title-overlap bg-dark pt-4 mt-5">
-    <div class="container d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-sm-between align-items-center pt-5">
-      <!--<div class="d-flex align-items-center pb-3">-->
-        <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2 ">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-              <li class="breadcrumb-item">
-                <a class="text-nowrap" href="/">
-                  <i class="ci-home"></i>Home
-                </a>
-              </li>
-              <li class="breadcrumb-item text-nowrap"><a href="#">Account</a>
-              </li>
-              <li class="breadcrumb-item text-nowrap active" aria-current="page">Sales Dashboard</li>
-            </ol>
-          </nav>
-        </div>
-        <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-          <h1 class="h3 text-light mb-0">Your sales / earnings</h1>
-          
-        </div>
-        <!--<div class="img-thumbnail rounded-circle position-relative flex-shrink-0" style="width: 6.375rem;">
-          <img class="rounded-circle" src="/images/avatar.png" alt="Createx Studio">
-        </div>
-        <div class="ps-3">
-          <h3 class="text-light fs-lg mb-0">Createx Studio</h3>
-          <span class="d-block text-light fs-ms opacity-60 py-1">Member since November 2019</span>
-        </div>-->
-      <!--</div>-->
-      <!--<div class="d-flex">
-        <div class="text-sm-end me-5">
-          <div class="text-light fs-base">Total sales</div>
-          <h3 class="text-light">426</h3>
-        </div>
-        <div class="text-sm-end">
-          <div class="text-light fs-base">Seller rating</div>
-          <div class="star-rating">
-            <i class="star-rating-icon ci-star-filled active"></i>
-            <i class="star-rating-icon ci-star-filled active"></i>
-            <i class="star-rating-icon ci-star-filled active"></i>
-            <i class="star-rating-icon ci-star-filled active"></i>
-            <i class="star-rating-icon ci-star"></i>
-          </div>
-          <div class="text-light opacity-60 fs-xs">Based on 98 reviews</div>
-        </div>
-      </div>-->
+  <div class="container d-lg-flex justify-content-between py-2 py-lg-3 mt-3">
+    <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+          <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="ci-home"></i>Home</a></li>
+          <li class="breadcrumb-item text-nowrap"><a href="/edit-signin">Account</a>
+          </li>
+          <li class="breadcrumb-item text-nowrap active" aria-current="page">Sales dashboard</li>
+        </ol>
+      </nav>
+      <div class="d-none d-lg-flex">
+        <form action="/signout" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+          <button class="btn btn-primary btn-sm mt-3" type="submit">
+            <i class="ci-sign-out me-2" aria-hidden="true"></i> Sign out</button>
+        </form>
+      </div>
+      
+    </div> 
+    <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+      <h1 class="h3 text-light mb-0">Your sales/earnings</h1> 
     </div>
-</div>    
+  </div>
+</div>   
 <div class="container mb-5 pb-3 pt-3">
     <div class="bg-light shadow-lg rounded-3 overflow-hidden">
       <div class="row">
         <div class="col-lg-4 pe-xl-5">
-          <div class="d-block d-lg-none p-4"><a class="btn btn-outline-accent d-block" href="#account-menu"
-              data-bs-toggle="collapse" aria-expanded="true"><i class="fas fa-bars me-2"></i></i>Account menu</a></div>
+          <div class="d-block d-lg-none p-4">
+            <a class="btn btn-outline-accent d-block" href="#account-menu" data-bs-toggle="collapse" aria-expanded="true">
+              <i class="ci-menu me-2"></i>
+              Account menu
+            </a>
+          </div>
           <div class="h-100 border-end mb-2">
             <div class="d-lg-block collapse" id="account-menu">
               <div class="bg-secondary p-4">
@@ -60,59 +41,68 @@
               </div>
               <ul class="list-unstyled mb-0">
                 <li class="border-bottom mb-0">
-                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/edit-signin">
-                    <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Profile</a>
+                  <a class="nav-link-style  d-flex align-items-center px-4 py-3" href="/edit-signin">
+                    <i class="ci-user opacity-60 me-2" aria-hidden="true"></i>Profile</a>
                 </li>
                 <li class="border-bottom mb-0">
-                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
-                    <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
-                </li>
-                <li class="border-bottom mb-0">
-                  <a class="btn nav-link-style  d-flex align-items-center px-4 py-3" href="/addresses">
-                    <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Addresses</a>
-                </li>
-                <li class="border-bottom mb-0">
-                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-purchases.html">
-                    <i class="fa fa-shopping-cart opacity-60 me-2" aria-hidden="true"></i>Purchases</a></li>
-                <li class="mb-0">
-                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-favorites.html">
-                    <i class="far fa-heart opacity-60 me-2" aria-hidden="true"></i>Favorites<span
-                      class="fs-sm text-muted ms-auto">4</span>
-                  </a>
-                </li>
-              </ul>
-              <div class="bg-secondary p-4">
-                <h3 class="fs-sm mb-0 text-muted">Seller Dashboard</h3>
-              </div>
-              <ul class="list-unstyled mb-0">
-                <li class="border-bottom mb-0">
-                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-sales.html">
-                    <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Sales<span
-                      class="fs-sm text-muted ms-auto">$1,375.00</span>
-                  </a>
-                </li>
-                <li class="border-bottom mb-0">
-                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/products">
-                    <i class="fa fa-box opacity-60 me-2" aria-hidden="true"></i>Products<span
-                      class="fs-sm text-muted ms-auto">5</span>
-                  </a>
-                </li>
-                <li class="border-bottom mb-0">
-                  <a class="btn nav-link-style active d-flex align-items-center px-4 py-3" href="/add-product">
-                    <i class="fa fa-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
-                </li>
-                <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3"
-                    href="dashboard-payouts.html">
-                    <i class="fa fa-rupee-sign opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
-                </li>
-  
+                  <a class="btn nav-link-style d-flex align-items-center px-4 py-3" href="/addresses">
+                    <i class="ci-location opacity-60 me-2" aria-hidden="true"></i>Addresses</a>
+                </li> 
                 <li class="mb-0">
                   <form action="/signout" method="POST">
                     <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                     <button class="btn nav-link-style d-flex align-items-center px-4 py-3" type="submit">
-                      <i class="fa fa-arrow-left opacity-60 me-2" aria-hidden="true"></i> Sign out</button>
+                      <i class="ci-sign-out opacity-60 me-2" aria-hidden="true"></i> Sign out</button>
                   </form>
-                </li>
+                </li>             
+                
+              </ul>
+              <div class="bg-secondary p-4">
+                <h3 class="fs-sm mb-0 text-muted">
+                 <%if(user.role=='SELLER'){%>
+                  Seller Dashboard
+                <%}else{%>
+                 Dashboard
+                <%}%></h3>
+              </div>
+              <ul class="list-unstyled mb-0">
+                  <%if(user.role=='ADMIN'){%>
+                  <li class="border-bottom mb-0">
+                    <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
+                      <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
+                  </li>
+                  <%}%>
+                  <li class="border-bottom mb-0">
+                    <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/orders">
+                      <i class="ci-bag opacity-60 me-2" aria-hidden="true"></i>Purchases</a>
+                    </li>
+                  <li class="border-bottom mb-0">
+                    <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/wishlist">
+                      <i class="ci-heart opacity-60 me-2" aria-hidden="true"></i>Wishlist
+                    </a>
+                  </li>                   
+                  <%if(user.role=='SELLER'){%>
+                    <li class="border-bottom mb-0">
+                    <a class="nav-link-style active d-flex align-items-center px-4 py-3" href="/sales">
+                      <i class="ci-rupee opacity-60 me-2" aria-hidden="true"></i>Sales
+                    </a>
+                    </li>
+                    <li class="border-bottom mb-0">
+                    <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/products">
+                      <i class="ci-package opacity-60 me-2" aria-hidden="true"></i>Products
+                    </a>
+                    </li>
+                    <li class="border-bottom mb-0">
+                     <a class="btn nav-link-style d-flex align-items-center px-4 py-3" href="/add-product">
+                     <i class="ci-cloud-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
+                    </li>
+                    <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-payouts.html">
+                      <i class="ci-currency-exchange opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
+                    </li>
+                    <%}%>
+                    
+                  
+                               
               </ul>
             </div>
           </div>

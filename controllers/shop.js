@@ -734,7 +734,7 @@ exports.getsales = async (req, res) => {
       orderdata: orderdata,
       firstdate: firstdate,
       lastdate: lastdate,
-      totalsales: totalsales[0].total_sale_amt,
+      totalsales: totalsales[0].total_sale_amt||0,
       totalsales1:totalsales1,
       balanceamt: balanceamt,
       topproducts:topproducts
