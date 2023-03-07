@@ -1,0 +1,129 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-5 mt-5">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+      <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+        <h1 class="h3 text-light mb-0">Create Bookset</h1>
+      </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mb-0">
+       <section class="col-lg-8">
+          <!-- Steps-->
+          <div class="steps steps-light pt-2 pb-3 mb-1">
+             <a class="step-item active">
+                <div class="step-progress"><span class="step-count">1</span></div>
+                <div class="step-label"><i class="ci-store"></i>School</div>
+             </a>
+             <a class="step-item active current" >
+                <div class="step-progress"><span class="step-count">2</span></div>
+                <div class="step-label"><i class="ci-document"></i>Create Bookset</div>
+             </a>
+             <a class="step-item" href="/payment">
+                <div class="step-progress"><span class="step-count">3</span></div>
+                <div class="step-label"><i class="ci-calculator"></i>Add Products</div>
+             </a>
+             <a class="step-item" href="/payment">
+                <div class="step-progress"><span class="step-count">4</span></div>
+                <div class="step-label"><i class="ci-wallet"></i>Bank Details</div>
+             </a>
+             <a class="step-item" href="/complete">
+                <div class="step-progress"><span class="step-count">5</span></div>
+                <div class="step-label"><i class="ci-card"></i>Complete</div>
+             </a>
+          </div>
+       </section>
+    </div>
+</div>
+<div class="container pb-3 mb-5 pt-3">
+    <% if (message){%>
+        <div class="container alert alert-danger d-flex message-div " role="alert">
+          <div class="alert-icon">
+            <i class="ci-close-circle"></i>
+          </div>
+          <div class="message">
+            <%message.forEach(msg =>{%>
+            <%=msg%>
+            <br>
+            <%})%>
+          </div>
+        </div>
+        <%}%>
+    <h2 class="h6 pt-1 pb-2 mb-1 ">Bookset</h2>  
+    <form action="/add-bookset" method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input type="hidden" name="schoolname" value="<%=school.Name%>">
+      <input type="hidden" name="schoolcity" value="<%=school.city%>">
+      <input type="hidden" name="schoolId" value="<%=school.id%>">
+      <input type="hidden" name="schooladdressLine2" value="<%=school.addressLine2%>">
+      <!-- Shipping address-->
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="school-address-1">Bookset Name</label>
+            <input class="form-control" type="text" id="Name" name="Name" value="">
+            <div class="form-text">note:if empty then Bookset Name would be :<%=school.Name%>-<%=school.addressLine2%>-<%=school.city%>-Class</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label class="form-label" for="class">Class</label>
+            <select class="form-select" id="class" name="class">
+                <option value="Choose Class">Choose Class</option>
+                <% if(classes1) { %>
+                    <% classes1.forEach(function(class1){ %>
+                      <option value=<%= class1.id %>><%= class1.Name %></option>
+                    <% } ) }%>
+            </select>
+          </div>
+        </div>
+    </div>
+      <!-- desktop navigation-->
+      <div class="row d-none d-lg-flex">
+     <div class="col">
+        <div class="d-none d-lg-flex pt-4 mt-3">
+           <div class="w-50 pe-3">
+              <a class="btn btn-secondary d-block w-100" href="/add-product">
+                 <i class="fa fa-arrow-left mt-sm-0 me-2"></i>
+                 <span class="d-none d-sm-inline">
+                    <i class="ci-arrow-left"></i>
+                    Add Product</span>
+                 <span class="d-inline d-sm-none">Back</span>
+              </a>
+           </div>
+           <div class="w-50 ps-2">
+              <button class="btn btn-primary d-block w-100" type="submit" fdprocessedid="fs3gh">
+                 <span class="d-none d-sm-inline">Create Book Set</span>
+                 <span class="d-inline d-sm-none">Next</span>
+                 <i class="fa fa-arrow-right mt-sm-0 ms-1"></i>
+              </button>
+           </div>
+  
+        </div>
+     </div>
+      </div>
+      <!-- Navigation (mobile)-->
+      <div class="row d-lg-none">
+     <div class="col-lg-8">
+        <div class="d-flex pt-4 mt-3">
+           <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100" href="/add-product">
+                 <i class="ci-arrow-left mt-sm-0 me-1"></i>
+                 <span class="d-none d-sm-inline">Back to Add Product</span>
+                 <span class="d-inline d-sm-none"><i class="ci-arrow-left"></i>Back</span></a></div>
+           <div class="w-50 ps-2">
+  
+              <button class="btn btn-primary  d-block w-100" type="submit">
+                 <span class="d-none d-sm-inline">Bookset</span>
+                 <span class="d-inline d-sm-none">
+                    Bookset</span>
+                 <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+              </button>
+  
+           </div>
+        </div>
+     </div>
+  
+       </div>
+    </form>
+</div>
+<%- include('footer'); -%>

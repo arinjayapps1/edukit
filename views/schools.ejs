@@ -11,13 +11,13 @@
       <section class="col-lg-8">
          <!-- Steps-->
          <div class="steps steps-light pt-2 pb-3 mb-1">
-            <a class="step-item active current" href="/add-school">
+            <a class="step-item active current" >
                <div class="step-progress"><span class="step-count">1</span></div>
-               <div class="step-label"><i class="ci-user-circle"></i>School</div>
+               <div class="step-label"><i class="ci-store"></i>School</div>
             </a>
-            <a class="step-item" href="/checkout">
+            <a class="step-item" >
                <div class="step-progress"><span class="step-count">2</span></div>
-               <div class="step-label"><i class="ci-store"></i>Add School Book Set</div>
+               <div class="step-label"><i class="ci-document"></i>Create Bookset</div>
             </a>
             <a class="step-item" href="/payment">
                <div class="step-progress"><span class="step-count">3</span></div>
@@ -38,48 +38,46 @@
 <!--Main body-->
 <div class="container pb-5 mb-2 mb-md-4">
    <% if (message){%>
-
-      <div class="alert alert-danger d-flex" role="alert">
-        <div class="alert-icon">
-          <i class="ci-close-circle"></i>
-        </div>
-        <div class="message"><%= message %></div>
+   <div class="alert alert-danger d-flex" role="alert">
+      <div class="alert-icon">
+         <i class="ci-close-circle"></i>
       </div>
-
-      <%}%>
+      <div class="message"><%= message %></div>
+   </div>
+   <%}%>
    <form action="/school" method="POST">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <!-- Shipping address-->
-      <h2 class="h6 pt-1 pb-2 mb-1 border-bottom">Schools</h2>
-      <%let j =0;%>
-      <% schools.forEach(a => {%>
-      <%if (j==0||j%2==0) {%>
-      <div class="row">
-         <div class="d-sm-flex justify-content-between align-items-center my-1 pb-2 ">
-            <%}%>
+   <!-- Shipping address-->
+   <h2 class="h6 pt-1 pb-2 mb-1 border-bottom">Schools</h2>
+   <%let j =0;%>
+   <% schools.forEach(a => {%>
+   <%if (j==0||j%2==0) {%>
+   <div class="row">
+      <div class="d-sm-flex justify-content-between align-items-center my-1 pb-2 ">
+         <%}%>
       <!-- Item-->
       <div class="d-block d-sm-flex justify-content-between align-items-center text-center text-sm-start">
             <div class="form-check">
                <input class="form-check-input" type="radio" id="<%=a.id %>" name="school" value="<%= a.id %>">
-         </div>
-         <div class="card school-card" style="max-width: 540px;">
-            <div class="row g-0">
-               <div class="col-sm-4">
-                  <img src="<%=a.imageUrl%>" class="rounded-start pt-1" alt="Card image">
-               </div>
-               <div class="col-sm-8">
-                  <div class="card-body">
-                     <h5 class="card-title"><%= a.Name %></h5>
-                     <h4 class="product-title fs-sm text-muted mb-2"><%= a.addressLine1 %>,<%= a.addressLine2 %></h4>
-                     <h4 class="product-title fs-sm text-muted mb-2"><%= a.city %>-<%= a.zipcode %></h4>
-                     <h4 class="product-title fs-sm text-muted mb-2"><%= a.state %>,<%= a.country %></h4>
-                  </div>
+      </div>
+      <div class="card school-card" style="max-width: 540px;">
+         <div class="row g-0">
+            <div class="col-sm-4">
+               <img src="<%=a.imageUrl%>" class="rounded-start pt-1" alt="Card image">
+            </div>
+            <div class="col-sm-8">
+               <div class="card-body">
+                  <h5 class="card-title"><%= a.Name %></h5>
+                  <h4 class="product-title fs-sm text-muted mb-2"><%= a.addressLine1 %>,<%= a.addressLine2 %></h4>
+                  <h4 class="product-title fs-sm text-muted mb-2"><%= a.city %>-<%= a.zipcode %></h4>
+                  <h4 class="product-title fs-sm text-muted mb-2"><%= a.state %>,<%= a.country %></h4>
                </div>
             </div>
          </div>
       </div>
-      <%j++;%>
-      <%if (j%2==0||j==schools.length) {%>
+   </div>
+   <%j++;%>
+   <%if (j%2==0||j==schools.length) {%>
 </div>
 </div>
 <%}%>
@@ -134,6 +132,6 @@
    </div>
 
 </div>
-</form>
+   </form>
 </div>
 <%- include('footer'); -%>

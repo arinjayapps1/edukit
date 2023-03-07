@@ -71,6 +71,12 @@ insert into XX_ITEM_CATEGORIES values(20,'Sharpeners',4,CURRENT_TIMESTAMP,CURREN
 insert into XX_ITEM_CATEGORIES values(21,'Lab Stationery',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into XX_ITEM_CATEGORIES values(22,'Rulers',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into XX_ITEM_CATEGORIES values(23,'Clays & Doughs',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into XX_ITEM_CATEGORIES values(24,'Sheets',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into XX_ITEM_CATEGORIES values(25,'Scissors',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into XX_ITEM_CATEGORIES values(26,'Slates',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into XX_ITEM_CATEGORIES values(27,'Paint Brush',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into XX_ITEM_CATEGORIES values(27,'Colours',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into XX_ITEM_CATEGORIES values(27,'Colours',4,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 /*Noida Pincodes*/
 
 /* INSERT QUERY */
@@ -539,115 +545,3 @@ VALUES
     28, 'Tilpat B.O', 121003, 'Haryana', 
     'Faridabad', 'Faridabad'
   );
-/* INSERT QUERY */
-INSERT INTO XX_ZIP_CODES(
-  ZIPCODE_ID, location, pincode, state, 
-  district, city
-) 
-VALUES 
-  ('');
-
-
-guides-support-books
-guides-support-books
-
-if(req.file){
-    if (!(req.file.mimetype==='image/png'||req.file.mimetype==='image/jpg'||req.file.mimetype==='image/jpeg')){
-          errmsg[0]='Please select valid image jpeg/jpg/png'; 
-          req.session.product={productName:productName,
-            nameStatus:'is-valid',
-          productDesc:productDesc,
-          descStatus:'is-valid',
-          origPrice:origPrice,
-          origPriceStatus:'is-valid',
-          discPrice:req.body.disc_price,
-          discPriceStatus:'is-valid',
-          author:author,
-          authorStatus:'is-valid',
-          className:className,
-          classStatus:'is-valid',
-          publisher:publisher,
-          publisherStatus:'is-valid',
-          subject:subject,
-          subjectStatus:'is-valid',
-          tax:tax,
-          taxStatus:'is-valid',
-          category:category,
-          categoryStatus:'is-valid'
-         };
-          req.flash("producterrMsg", errmsg);
-          req.session.save(err => {
-            res.redirect("/add-product-book");
-          });
-    }
-}
-else{
-  console.log("inside else of file not there");
-  errmsg[0]='Please select valid image jpeg/jpg/png'; 
-  req.session.product={productName:productName,
-    nameStatus:'is-valid',
-  productDesc:productDesc,
-  descStatus:'is-valid',
-  origPrice:origPrice,
-  origPriceStatus:'is-valid',
-  discPrice:req.body.disc_price,
-  discPriceStatus:'is-valid',
-  author:author,
-  authorStatus:'is-valid',
-  className:className,
-  classStatus:'is-valid',
-  publisher:publisher,
-  publisherStatus:'is-valid',
-  subject:subject,
-  subjectStatus:'is-valid',
-  tax:tax,
-  taxStatus:'is-valid',
-  category:category,
-  categoryStatus:'is-valid'
- };
-  req.flash("producterrMsg", errmsg);
-  req.session.save(err => {
-    res.redirect("/add-product-book");
-  });
-}
-
-https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.bf72fdd1f869744fa0d7d578ac80ccad.201a408404b46ce7f21bd66418543c3c&client_id=1000.NCNRCYI5DSIG6SKW4STUR52WZI129C&client_secret=65b160f1254e86a3cc7ac4d8821448d98ac754d31f&redirect_uri=http://localhost:3000/callback&grant_type=refresh_token
-
-https://accounts.zoho.in/oauth/v2/auth?scope=ZohoBooks.fullaccess.all&client_id=1000.NCNRCYI5DSIG6SKW4STUR52WZI129C&state=testing&response_type=code&redirect_uri=http://localhost:3000/callback&access_type=offline
-
-https://accounts.zoho.in/oauth/v2/token?code=&client_id=1000.NCNRCYI5DSIG6SKW4STUR52WZI129C&client_secret=65b160f1254e86a3cc7ac4d8821448d98ac754d31f&redirect_uri=http://localhost:3000/callback&grant_type=authorization_code
-
-https://accounts.zoho.in/oauth/v2/token?refresh_token1000.bf72fdd1f869744fa0d7d578ac80ccad.201a408404b46ce7f21bd66418543c3c=&client_id=1000.NCNRCYI5DSIG6SKW4STUR52WZI129C&client_secret=65b160f1254e86a3cc7ac4d8821448d98ac754d31f&redirect_uri=http://localhost:3000/callback&grant_type=refresh_token
-
-https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.bf72fdd1f869744fa0d7d578ac80ccad.201a408404b46ce7f21bd66418543c3c&client_id=1000.NCNRCYI5DSIG6SKW4STUR52WZI129C&client_secret=65b160f1254e86a3cc7ac4d8821448d98ac754d31f&redirect_uri=http://localhost:3000/callback&grant_type=authorization_code
-Parameter
-
-
-Books
-School Books
-General Books
-
-cloudinary.image("data1.public_id", {transformation: [
-    {height: 260, width: 139, crop: "scale"},
-    {background: "#FFFFFF", height: 410, width: 520, crop: "mpad"}
-    ]})
-
-    18AABCU9603R1ZM
-    You must first verify your Bank Details before your account is active. This allows us to better guard our community against spammers and bots.
-
-    <div class="d-sm-flex justify-content-between align-items-center my-2 pb-3">
-      <div class="d-block d-sm-flex align-items-center text-center text-sm-start">
-        <div class="pt-2">
-          <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html"><%= a.name %></a></h3>
-          <h4 class="product-title fs-sm text-muted mb-2"><%= a.addressLine1 %>,<%= a.addressLine2 %></h4>
-          <h4 class="product-title fs-sm text-muted mb-2"><%= a.city %>-<%= a.zipcode %></h4>
-          <h4 class="product-title fs-sm text-muted mb-2"><%= a.state %>,<%= a.country %></h4>
-
-        </div>
-      </div>
-      <a href="/edit-selleraddress/<%= a.id %>" class="nav-link-style me-2" data-bs-toggle="tooltip" aria-label="Edit"
-        data-bs-original-title="Edit">
-        <i class="ci-edit"></i>
-      </a>
-    </div>
-

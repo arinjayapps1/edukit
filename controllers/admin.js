@@ -10,10 +10,11 @@ const zipcodes=require("../models/zipcode");
 
 
 const Category = require('../models/item-Category');
-const Class = require('../models/class');
-const Subject= require('../models/subject');
-const Taxrate = require('../models/taxrate');
-const Spaces = require("../util/spaces");
+const Class    = require('../models/class');
+const Subject  = require('../models/subject');
+const Taxrate  = require('../models/taxrate');
+const Bookset  = require("../models/bookset");
+const Spaces   = require("../util/spaces");
 const cloudinary = require("../util/cloudinary");
 const zoho = require("../util/zoho");
 //const flash    = require("connect-flash");
@@ -736,7 +737,7 @@ exports.postSchool=async(req,res)=>{
   let discAmt = 0;
   let schools;
   console.log("inside postschool");
-  console.log(req.body.school);
+  //console.log(req.body.school);
   let message = req.flash('message');
   try{
     if (req.body.school) {
@@ -954,5 +955,77 @@ catch(err){
 }
 
 exports.getAddBookset=async(req,res)=>{
+  let message = req.flash('message');
+  let schoolId;
+  let classes1;
+  let school;
   //console.log(req);
+  try
+  {
+    schoolId = req.params.schoolId;
+    classes1 = await Class.findAll();
+    school   = await School.findByPk(schoolId);
+    //console.log(school);
+    if (message.length < 1) 
+    {
+      message = null;
+    }
+     //
+    res.render("add-bookset",{classes1:classes1
+                             ,school:school
+                             ,message:message
+                            }
+              );
+ }
+ catch(err){
+   console.log(`Unexpected Error:${err}`)
+   req.flash("message",`Unexpected Error:${err}`);
+   message=req.flash("message");
+   res.render("add-bookset",{
+    classes1:classes1,
+    school:school,
+    message:message
+  });
+ }
+}
+
+exports.postAddBookset=async(req,res)=>{
+  let name               = req.body.Name;
+  let classid            = req.body.class;
+  let schoolId           = req.body.schoolId;
+  let schoolname         = req.body.schoolname;
+  let schoolcity         = req.body.schoolcity;
+  let schooladdressLine2 = req.body.schooladdressLine2;
+  let userId = req.user.id;
+  let booksetname;
+  let booksetresult;
+  let className;
+  console.log("inside postAddBookset");
+  try{
+
+    if (classid=='Choose Class'){
+      req.flash("message","Please select valid Class");
+      req.session.save(err=>{
+        res.redirect("/add-bookset/"+schoolId);
+      });
+    }
+    else{
+      let class2= await Class.findByPk(classid) ;
+      if (!name){
+        booksetname=schoolname +'-' +schooladdressLine2 +'-'+schoolcity+'-'+class2.Name
+      }
+      else{
+        booksetname=name;
+      }
+      booksetresult= await Bookset.create({Name:booksetname,userId:userId,SchoolId:schoolId,ClassId:classid});
+      res.redirect("/bookset-add-items");
+      
+    }
+    
+  }
+  catch(err){
+    req.flash("message",`Unexpected Error:${err}`);
+    message=req.flash("message");
+    res.redirect("/add-bookset");
+  }
 }

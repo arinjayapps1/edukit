@@ -2,6 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../util/database');
 const User = require('./user');
 const School = require('./school');
+const Class = require('./class');
 
 const Bookset = sequelize.define('bookset',{
     id:{
@@ -36,6 +37,16 @@ const Bookset = sequelize.define('bookset',{
         // This is the column name of the referenced model
         key: 'SCHOOL_ID'
       }
+   },
+   ClassId:{
+    type:Sequelize.INTEGER,
+    field:"CLASS_ID",
+    references:{
+      // This is a reference to another model
+      model: Class,
+      // This is the column name of the referenced model
+      key: 'CLASS_ID'
+    }
    }
 },
 {

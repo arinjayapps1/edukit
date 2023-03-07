@@ -9,6 +9,7 @@ const csrf = require("csurf");
 var csrfProtection = csrf();
 const isBuyer=require("../middleware/isBuyer");
 const isSeller  = require("../middleware/isSeller");
+const checkschool= require("../middleware/checkschool");
 
 router.get("/add-product-book",isAuth,isBuyer,adminController.getAddProductBook)
 router.get("/add-product", isAuth,adminController.getAddProduct);
@@ -123,6 +124,16 @@ body('zipcode').custom((value,{req})=>{
 ],isAuth,adminController.postAddSchool);
 router.get("/school",isAuth, isBuyer,adminController.getSchool);
 router.post("/school",isAuth, isBuyer,adminController.postSchool);
-router.get("/add-bookset/:schoolId",isAuth,isBuyer,adminController.getAddBookset);
+router.get("/add-bookset/:schoolId",isAuth,isBuyer,checkschool,adminController.getAddBookset);
+router.post("/add-bookset",isAuth,isBuyer,[
+  body('class').custom((value,{req})=>{
+
+    if(value=='Choose Class'){
+      throw new Error('Please select valid Class');
+    }
+    return true;
+  }),
+],adminController.postAddBookset);
+
 
 module.exports = router;
