@@ -1,0 +1,161 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+  <div class="container d-lg-flex justify-content-between py-2 py-lg-3 mt-3">
+    <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+          <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="ci-home"></i>Home</a></li>
+          <li class="breadcrumb-item text-nowrap"><a href="/edit-signin">Account</a>
+          </li>
+          <li class="breadcrumb-item text-nowrap active" aria-current="page">Add product</li>
+        </ol>
+      </nav>
+      <div class="d-none d-lg-flex">
+        <form action="/signout" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+          <button class="btn btn-primary btn-sm mt-3" type="submit">
+            <i class="ci-sign-out me-2" aria-hidden="true"></i> Sign out</button>
+        </form>
+      </div>
+      
+    </div> 
+    <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+      <h1 class="h3 text-light mb-0">Add products</h1> 
+    </div>
+  </div>
+</div>
+<div class="container mb-5 pb-3">
+  <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+    <div class="row">
+      <div class="col-lg-4 pe-xl-5">
+        <div class="d-block d-lg-none p-4">
+          <a class="btn btn-outline-accent d-block" href="#account-menu" data-bs-toggle="collapse" aria-expanded="true">
+            <i class="ci-menu me-2"></i>
+            Account menu
+          </a>
+        </div>
+        <div class="h-100 border-end mb-2">
+          <div class="d-lg-block collapse" id="account-menu">
+            <div class="bg-secondary p-4">
+              <h3 class="fs-sm mb-0 text-muted">Account</h3>
+            </div>
+            <ul class="list-unstyled mb-0">
+              <li class="border-bottom mb-0">
+                <a class="nav-link-style  d-flex align-items-center px-4 py-3" href="/edit-signin">
+                  <i class="ci-user opacity-60 me-2" aria-hidden="true"></i>Profile</a>
+              </li>
+              <li class="border-bottom mb-0">
+                <a class="btn nav-link-style d-flex align-items-center px-4 py-3" href="/addresses">
+                  <i class="ci-location opacity-60 me-2" aria-hidden="true"></i>Addresses</a>
+              </li> 
+              <li class="mb-0">
+                <form action="/signout" method="POST">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                  <button class="btn nav-link-style d-flex align-items-center px-4 py-3" type="submit">
+                    <i class="ci-sign-out opacity-60 me-2" aria-hidden="true"></i> Sign out</button>
+                </form>
+              </li>             
+              
+            </ul>
+            <div class="bg-secondary p-4">
+              <h3 class="fs-sm mb-0 text-muted">
+               <%if(user.role=='SELLER'){%>
+                Seller Dashboard
+              <%}else{%>
+               Dashboard
+              <%}%></h3>
+            </div>
+            <ul class="list-unstyled mb-0">
+                <%if(user.role=='ADMIN'){%>
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/add-category">
+                    <i class="fa fa-gear opacity-60 me-2" aria-hidden="true"></i>Add Category</a>
+                </li>
+                <%}%>
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/orders">
+                    <i class="ci-bag opacity-60 me-2" aria-hidden="true"></i>Purchases</a>
+                  </li>
+                <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/wishlist">
+                    <i class="ci-heart opacity-60 me-2" aria-hidden="true"></i>Wishlist
+                  </a>
+                </li>                   
+                <%if(user.role=='SELLER'){%>
+                  <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/sales">
+                    <i class="ci-rupee opacity-60 me-2" aria-hidden="true"></i>Sales
+                  </a>
+                  </li>
+                  <li class="border-bottom mb-0">
+                  <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/products">
+                    <i class="ci-package opacity-60 me-2" aria-hidden="true"></i>Products
+                  </a>
+                  </li>
+                  <li class="border-bottom mb-0">
+                   <a class="btn nav-link-style active d-flex align-items-center px-4 py-3" href="/add-product">
+                   <i class="ci-cloud-upload opacity-60 me-2" aria-hidden="true"></i>Add New Product</a>
+                  </li>
+                  <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="dashboard-payouts.html">
+                    <i class="ci-currency-exchange opacity-60 me-2" aria-hidden="true"></i>Payouts</a>
+                  </li>
+                  <%}%>
+                  
+                
+                             
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 pt-lg-4 pb-4">
+        <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+          <!--title-->
+          <div class="d-sm-flex flex-wrap justify-content-between align-items-center pb-2">
+            <h2 class="h3 py-2 me-2 text-center text-sm-start">Add New Products</h2>
+          </div>
+          <% if (message){%>
+            <div class="container alert alert-danger d-flex message-div" role="alert">
+              <div class="alert-icon">
+                <i class="ci-close-circle"></i>
+              </div>
+              <div class="message"><%= message %></div>
+            </div>  
+          
+          <%}%>
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <a class="btn btn-primary btn-shadow d-block w-100 mt-4"  href="/add-product-book">
+                <span class="d-none d-sm-inline"> Add School Books</span>
+                <span class="d-inline d-sm-none">Books</span>
+              </a>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <a class="btn btn-primary btn-shadow d-block w-100 mt-4"  href="/school">
+                <span class="d-none d-sm-inline"> Add School Book Set</span>
+                <span class="d-inline d-sm-none">Book Set</span>
+              </a>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <a class="btn btn-primary btn-shadow d-block w-100 mt-4"  href="/checkout">
+                <span class="d-none d-sm-inline"> Add School Uniforms</span>
+                <span class="d-inline d-sm-none">Uniforms</span>
+              </a>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <a class="btn btn-primary btn-shadow d-block w-100 mt-4"  href="/checkout">
+                <span class="d-none d-sm-inline"> Add Stationery</span>
+                <span class="d-inline d-sm-none">Stationery</span>
+              </a>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('footer'); -%>

@@ -1,0 +1,121 @@
+<%- include('navbar'); -%>
+<div class="page-title-overlap bg-dark pt-4 mt-5">
+   <div class="container d-lg-flex justify-content-between py-lg-3">
+      <div class="order-lg-1 pe-lg-4 text-center text-lg-start pt-1">
+         <h1 class="h3 text-light mb-0">Add School Book sets</h1>
+      </div>
+   </div>
+</div>
+<div class="container">
+   <div class="row mb-0">
+      <section class="col-lg-8">
+         <!-- Steps-->
+         <div class="steps steps-light pt-2 pb-3 mb-1">
+            <a class="step-item active current">
+               <div class="step-progress"><span class="step-count">1</span></div>
+               <div class="step-label"><i class="ci-store"></i>School</div>
+            </a>
+            <a class="step-item">
+               <div class="step-progress"><span class="step-count">2</span></div>
+               <div class="step-label"><i class="ci-document"></i>Create Bookset</div>
+            </a>
+            <a class="step-item" href="/payment">
+               <div class="step-progress"><span class="step-count">3</span></div>
+               <div class="step-label"><i class="ci-calculator"></i>Add Products</div>
+            </a>
+            <a class="step-item" href="/payment">
+               <div class="step-progress"><span class="step-count">4</span></div>
+               <div class="step-label"><i class="ci-wallet"></i>Bank Details</div>
+            </a>
+            <a class="step-item" href="/complete">
+               <div class="step-progress"><span class="step-count">5</span></div>
+               <div class="step-label"><i class="ci-card"></i>Complete</div>
+            </a>
+         </div>
+      </section>
+   </div>
+</div>
+<!--Main body-->
+<div class="container pb-5 mb-2 mb-md-4">
+   <% if (message){%>
+   <div class="alert alert-danger d-flex" role="alert">
+      <div class="alert-icon">
+         <i class="ci-close-circle"></i>
+      </div>
+      <div class="message"><%= message %></div>
+   </div>
+   <%}%>
+   <form action="/booksets/<%=schoolId%>" method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <!-- Shipping address-->
+      <h2 class="h6 pt-1 pb-2 mb-1 border-bottom">Booksets</h2>
+      <%let j =0;%>
+      <% booksets.forEach(a => {%>
+         <%if (j==0||j%2==0) {%>
+           <div class="row">
+            <div class="d-sm-flex justify-content-between align-items-center my-1 pb-2 ">
+            <%}%>
+            <!-- Item-->
+            <div class="d-block d-sm-flex justify-content-between align-items-center text-center text-sm-start">
+            <div class="form-check">
+               <input class="form-check-input" type="radio" id="<%=a.id %>" name="booksetid" value="<%= a.id %>">
+               <h5 class="card-title"><%= a.Name %></h5>
+            </div>
+            
+            </div>
+            <%j++;%>
+            <%if (j%2==0||j==booksets.length) {%>
+            </div>
+           </div>
+           <%}%>
+      <% }) %>
+      <a class="btn btn-primary d-block w-100" href="/add-bookset/<%=schoolId%>">
+         <span class="d-none d-sm-inline">Add Bookset</span>
+         <span class="d-inline d-sm-none">Add Bookset</span>
+      </a>
+      <!-- desktop navigation-->
+      <div class="row d-none d-lg-flex">
+         <div class="col">
+            <div class="d-none d-lg-flex pt-4 mt-3">
+               <div class="w-50 pe-3">
+                  <a class="btn btn-secondary d-block w-100" href="/school">
+                     <i class="fa fa-arrow-left mt-sm-0 me-2"></i>
+                     <span class="d-none d-sm-inline">Back to schools</span>
+                     <span class="d-inline d-sm-none">Schools</span>
+                  </a>
+               </div>
+               <div class="w-50 ps-2">
+                  <button class="btn btn-primary d-block w-100" type="submit" fdprocessedid="fs3gh">
+                     <span class="d-none d-sm-inline">Add Items</span>
+                     <span class="d-inline d-sm-none">Next</span>
+                     <i class="fa fa-arrow-right mt-sm-0 ms-1"></i>
+                  </button>
+               </div>
+      </div>
+   </div>
+      </div>
+      <!-- Navigation (mobile)-->
+      <div class="row d-lg-none">
+         <div class="col-lg-8">
+            <div class="d-flex pt-4 mt-3">
+               <div class="w-50 pe-3">
+                  <a class="btn btn-secondary d-block w-100" href="/school">
+                     <i class="ci-arrow-left mt-sm-0 me-1"></i>
+                     <span class="d-none d-sm-inline">schools</span>
+                     <span class="d-inline d-sm-none">Back</span>
+                  </a>
+               </div>
+            <div class="w-50 ps-2">
+               <button class="btn btn-primary  d-block w-100" type="submit">
+                  <span class="d-none d-sm-inline">Add Items</span>
+                  <span class="d-inline d-sm-none">Items</span>
+                  <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+               </button>
+            </div>
+      </div>
+   </div>
+
+      </div>
+   </form>
+</div>
+<%- include('footer'); -%>

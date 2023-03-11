@@ -83,55 +83,48 @@
 <%}%>
      <% }) %>
 <a class="btn btn-primary d-block w-100" href="/add-school">
-   <span class="d-none d-sm-inline">Add a new School</span>
-   <span class="d-inline d-sm-none">Add a new School</span>
+   <span class="d-none d-sm-inline">Add School</span>
+   <span class="d-inline d-sm-none">Add School</span>
 </a>
 <!-- desktop navigation-->
-<div class="row d-none d-lg-flex">
-   <div class="col">
-      <div class="d-none d-lg-flex pt-4 mt-3">
-         <div class="w-50 pe-3">
-            <a class="btn btn-secondary d-block w-100" href="/add-product">
-               <i class="fa fa-arrow-left mt-sm-0 me-2"></i>
-               <span class="d-none d-sm-inline">
-                  <i class="ci-arrow-left"></i>
-                  Add Product</span>
-               <span class="d-inline d-sm-none">Back</span>
-            </a>
-         </div>
-         <div class="w-50 ps-2">
-            <button class="btn btn-primary d-block w-100" type="submit" fdprocessedid="fs3gh">
-               <span class="d-none d-sm-inline">Create Book Set</span>
-               <span class="d-inline d-sm-none">Next</span>
-               <i class="fa fa-arrow-right mt-sm-0 ms-1"></i>
-            </button>
-         </div>
-
-      </div>
+<div class="d-none d-lg-flex pt-4 mt-3">
+   <div class="w-50 pe-3">
+      <a class="btn btn-secondary d-block w-100" href="/add-product">
+         <i class="ci-arrow-left mt-sm-0 me-1"></i>
+         <span class="d-none d-sm-inline">Back to Add Products</span>
+         <span class="d-inline d-sm-none">Products</span>
+      </a>
+   </div>
+   <div class="w-50 ps-2">
+      <button class="btn btn-primary d-block w-100" type="submit" >
+         <span class="d-none d-sm-inline">Booksets</span>
+         <span class="d-inline d-sm-none">Booksets</span>
+         <i class="ci-arrow-right mt-sm-0 ms-1"></i>
+      </button>
    </div>
 </div>
 <!-- Navigation (mobile)-->
 <div class="row d-lg-none">
    <div class="col-lg-8">
       <div class="d-flex pt-4 mt-3">
-         <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100" href="/add-product">
+         <div class="w-50 pe-3">
+            <a class="btn btn-secondary d-block w-100" href="/add-product">
                <i class="ci-arrow-left mt-sm-0 me-1"></i>
-               <span class="d-none d-sm-inline">Back to Add Product</span>
-               <span class="d-inline d-sm-none"><i class="ci-arrow-left"></i>Back</span></a></div>
+               <span class="d-none d-sm-inline">Add Product</span>
+               <span class="d-inline d-sm-none"></i>Back</span>
+            </a>
+         </div>
          <div class="w-50 ps-2">
-
-            <button class="btn btn-primary  d-block w-100" type="submit">
-               <span class="d-none d-sm-inline">Bookset</span>
-               <span class="d-inline d-sm-none">
-                  Bookset</span>
+           <button class="btn btn-primary d-block w-100" type="submit">
+               <span class="d-none d-sm-inline">Booksets</span>
+               <span class="d-inline d-sm-none">Booksets</span>
                <i class="ci-arrow-right mt-sm-0 ms-1"></i>
             </button>
-
          </div>
       </div>
    </div>
 
 </div>
-   </form>
+</form>
 </div>
 <%- include('footer'); -%>

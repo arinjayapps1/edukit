@@ -134,6 +134,9 @@ router.post("/add-bookset",isAuth,isBuyer,[
     return true;
   }),
 ],adminController.postAddBookset);
+router.get("/booksets/:schoolId",isAuth,checkschool,isBuyer,adminController.getBooksets);
+router.post("/booksets/:schoolId",isAuth,isBuyer,adminController.postBooksets);
+
 
 
 module.exports = router;

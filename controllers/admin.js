@@ -426,8 +426,8 @@ exports.PostAddProductBook = async (req, res) => {
       });
     } else {
       //console.log("req.body");
-      console.log(req.body);
-      console.log(req.file);
+      //console.log(req.body);
+      //console.log(req.file);
       console.log("before uplaoding image");
           data = await Spaces.uploadFileToS3({
             file: req.file
@@ -741,7 +741,7 @@ exports.postSchool=async(req,res)=>{
   let message = req.flash('message');
   try{
     if (req.body.school) {
-      res.redirect("/add-bookset/" + req.body.school);
+      res.redirect("/booksets/" + req.body.school);
   
     } else {
       schools = await School.findAll({where: {USER_ID: req.session.user.id}});
@@ -998,6 +998,7 @@ exports.postAddBookset=async(req,res)=>{
   let schooladdressLine2 = req.body.schooladdressLine2;
   let userId = req.user.id;
   let booksetname;
+  let booksetname1;
   let booksetresult;
   let className;
   console.log("inside postAddBookset");
@@ -1017,15 +1018,58 @@ exports.postAddBookset=async(req,res)=>{
       else{
         booksetname=name;
       }
-      booksetresult= await Bookset.create({Name:booksetname,userId:userId,SchoolId:schoolId,ClassId:classid});
-      res.redirect("/bookset-add-items");
-      
+      booksetname1 =await Bookset.findAll({where: {Name: booksetname,userId: req.session.user.id}});
+      if (booksetname1.length>0){
+        req.flash('message','Bookset already exists');
+        req.session.save(err=>{
+          res.redirect("/add-bookset/"+schoolId)
+        });
+        
+      }
+      else{
+        booksetresult= await Bookset.create({Name:booksetname,userId:userId,SchoolId:schoolId,ClassId:classid});
+        res.redirect("/booksets/"+schoolId);  
+      }   
     }
     
   }
   catch(err){
     req.flash("message",`Unexpected Error:${err}`);
-    message=req.flash("message");
-    res.redirect("/add-bookset");
+    req.session.save(err=>{
+      res.redirect("/add-bookset/"+schoolId);
+    })
+    
   }
+}
+
+exports.getBooksets=async(req,res)=>{
+  let booksets;
+  let schoolId;
+  let message = req.flash('message');
+  if (message.length < 1) {
+    message = null;
+  }
+  try {
+    schoolId = req.params.schoolId;
+    console.log(`schoolId:${schoolId}`);
+    booksets = await Bookset.findAll({where:{SchoolId:schoolId}});
+    res.render('booksets',{
+      booksets:booksets,
+      schoolId:schoolId,
+      message:message
+    });
+  }catch(err){
+    req.flash('message', `Unexpected Error:${err}`);
+    message = req.flash('message');
+    res.render('booksets',{
+      booksets:booksets,
+      schoolId:schoolId,
+      message:message
+    });
+  }
+}
+
+exports.postBooksets=async(req,res)=>{
+  console.log("request");
+  console.log(req.body);
 }

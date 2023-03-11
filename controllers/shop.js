@@ -756,5 +756,20 @@ exports.getsales = async (req, res) => {
     });
   }
 }
+
+exports.getSingleItem=async(req,res)=>{
+  const productId = req.params.itemId;
+  try{
+  let product = await Product.findByPk(productId);
+  res.render("single-item",{
+    product:product
+  });
+  }
+  catch(err){
+   console.log(`unexpected error:${err}`);
+
+  }
+  
+}
   
   

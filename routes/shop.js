@@ -31,7 +31,8 @@ router.get("/orders",isAuth,isSeller,shopController.getOrders);
 //router.post("/edit-address",isAuth,shopController.postEditaddress);
 //router.get("/404",isAuth,shopController.getOrders);
 router.get("/403",isAuth,shopController.get403);
-router.get("/sales",isAuth,shopController.getsales);
+router.get("/sales",isAuth,isSeller,shopController.getsales);
+router.get("/single-item/:itemId",isAuth,shopController.getSingleItem);
 
 module.exports= router;
 

@@ -2,7 +2,7 @@ const School = require('../models/school');
 
 module.exports = async (req, res, next) => {
     let schooldId = req.params.schoolId;
-    //console.log(req.session);
+    //console.log(req);
     //console.log("inside ischeckout.js");
     try {
         let schools = await School.findAll({
@@ -10,6 +10,8 @@ module.exports = async (req, res, next) => {
                 id: schooldId
             }
         });
+        console.log("schools");
+        console.log(schools);
         if (schools.length < 1) {
             let message = req.flash("message", "Please add school before creating School Book Set.");
             req.session.save(err => {
@@ -26,6 +28,6 @@ module.exports = async (req, res, next) => {
         
         next();
     } catch (err) {
-        console.log("Error in isCheckout due to error:" + err);
+        console.log("Error in checkschool due to error:" + err);
     }
 }
